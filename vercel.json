@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/getBarcode.ts": {
+    "api/*": {
       "includeFiles": "api/assets/**"
     }
   }
