@@ -1,7 +1,7 @@
 {
   "functions": {
     "api/*": {
-      "includeFiles": "api/assets/**"
+      "includeFiles": "api/assets/**;certs/**"
     }
   }
 }
