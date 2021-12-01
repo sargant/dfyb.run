@@ -102,6 +102,9 @@ const App: React.FC = () => (
           This tool was made by Robert Sargant (<Link href="https://www.parkrun.org.uk/parkrunner/208864/all/">A208864</Link>) in order to scratch a personal itch.
           It's open source, and you can <Link href="https://github.com/sargant/dfyb.run">find it on Github</Link>!
         </Paragraph>
+        <Paragraph>
+          If you'd like to tip a little something to cover my costs of developing this, please go to <Link href="https://ko-fi.com/sargant">ko-fi.com/sargant</Link> 🙂
+        </Paragraph>
       </div>
       <div>
         <BarcodeForm />
