@@ -103,7 +103,10 @@ const App: React.FC = () => (
           It's open source, and you can <Link href="https://github.com/sargant/dfyb.run">find it on Github</Link>!
         </Paragraph>
         <Paragraph>
-          If you'd like to tip a little something to cover my costs of developing this, please go to <Link href="https://ko-fi.com/sargant">ko-fi.com/sargant</Link> 🙂
+          If you'd like to give me any feedback, you can find me <Link href="https://twitter.com/sargant">on Twitter</Link>.
+        </Paragraph>
+        <Paragraph>
+          If you'd like to tip a little something to cover the costs of developing this, please go to <Link href="https://ko-fi.com/sargant">ko-fi.com/sargant</Link> 🙂
         </Paragraph>
       </div>
       <div>
