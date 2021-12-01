@@ -30,6 +30,7 @@ const BarcodeForm: React.FC = () => {
     })
     setPassUrl(query)
     setIsFormDirty(false)
+    window.scrollTo(0, document.body.scrollHeight);
   }, [setIsFormDirty, athleteNameInput.value, athleteIdInput.value, iceContactNameInput.value, iceContactNumberInput.value, medicalInfoInput.value])
 
   return (
