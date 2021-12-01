@@ -5,7 +5,15 @@ import { decrypt } from '../utils/encryption'
 
 import encryptedCerts from '../certs.enc.json'
 
-export default async (_: VercelRequest, response: VercelResponse) => {
+export default async (request: VercelRequest, response: VercelResponse) => {
+
+  const { 
+    athleteName,
+    athleteId,
+    iceContactName,
+    iceContactNumber,
+    medicalInfo
+  } = request.query
 
   const pass = await PKPass.from({
     model: join(__dirname, '..', 'pass-models', 'dfyb.run.pass'),
@@ -15,68 +23,68 @@ export default async (_: VercelRequest, response: VercelResponse) => {
       wwdr: decrypt(encryptedCerts.wwdr, process.env.SECRETS_KEY),
     }
   }, {
-    serialNumber: 'A208864'
+    serialNumber: `${athleteId}`
   })
 
   pass.headerFields.push({
-    key: 'HeaderInfo',
-    label: 'Robert Sargant',
-    value: 'A208864'
+    key: 'headerAthlete',
+    label: `${athleteName}`,
+    value: `${athleteId}`
   })
 
   pass.primaryFields.push({
-    key: 'AthleteName',
+    key: 'athleteName',
     label: 'Athlete Name',
-    value: 'Robert Sargant'
+    value: `${athleteName}`
   })
 
   pass.secondaryFields.push({
-    key: 'ice',
+    key: 'iceContactNumber',
     label: 'ICE',
-    value: '01234 567890'
+    value: `${iceContactNumber}`
   })
 
   pass.secondaryFields.push({
-    key: 'ice-name',
+    key: 'iceContactName',
     label: 'Contact Name',
-    value: 'Sarah Woods'
+    value: `${iceContactName}`
   })
 
   pass.auxiliaryFields.push({
     key: 'medicalInfo',
     label: 'Medical Info',
-    value: 'Allergic to Penicillin\nHas no heartbeat'
+    value: `${medicalInfo}`
   })
 
   pass.backFields.push({
-    key: 'athleteName',
+    key: 'backAthleteName',
     label: 'Athlete Name',
-    value: 'Robert Sargant'
+    value: `${athleteName}`
   })
 
   
   pass.backFields.push({
-    key: 'athleteID',
+    key: 'backAthleteId',
     label: 'Athlete ID',
-    value: 'A208864'
+    value: `${athleteId}`
   })
 
   pass.backFields.push({
-    key: 'emergencyContact',
-    label: 'Emergency Contact',
-    value: 'Sarah Woods\n01234 567890'
+    key: 'backIceContact',
+    label: 'Emergency Contact (ICE)',
+    value: `${iceContactName}\n${iceContactNumber}`
   })
 
   pass.backFields.push({
-    key: 'medicalInfo',
+    key: 'backMedicalInfo',
     label: 'Medical Info',
-    value: 'Allergic to Penicillin\nHas no heartbeat'
+    value: `${medicalInfo}`
   })
 
   pass.setBarcodes({
-    message: 'A208864',
+    message: `${athleteId}`,
     format: 'PKBarcodeFormatQR',
-    altText: 'A208864'
+    altText: `${athleteId}`
   })
   
   response.setHeader('Content-Type', 'application/vnd.apple.pkpass')
