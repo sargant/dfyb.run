@@ -1,7 +1,7 @@
 const { randomBytes } = require("crypto")
 const { readFileSync, writeFileSync } = require("fs");
 const { join } = require("path");
-const { encrypt } = require('./encryption')
+const { encrypt } = require('../utils/encryption')
 
 const certPaths = {
   wwdr: 'wwdr.pem',

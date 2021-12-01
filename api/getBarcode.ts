@@ -3,7 +3,7 @@ import { readFileSync } from 'fs';
 import { PKPass } from 'passkit-generator'
 import { CertificatesSchema, FileBuffers } from 'passkit-generator/lib/schemas';
 import { join } from 'path';
-import { decrypt } from '../certs/encryption'
+import { decrypt } from '../utils/encryption'
 import encryptedCerts from '../certs.enc.json'
 
 const readLocalAsset = (filename: string) => readFileSync(join(__dirname, 'assets', filename))
