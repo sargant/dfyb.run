@@ -46,7 +46,7 @@ const BarcodeForm: React.FC = () => {
             name="athleteId"
             placeholder="e.g. A208864"
             className="w-full rounded mt-1"
-            {...athleteNameInput}
+            {...athleteIdInput}
           />
         </label>
         <label className="block">
@@ -55,7 +55,7 @@ const BarcodeForm: React.FC = () => {
             type="text"
             name="athleteName"
             className="w-full rounded mt-1"
-            {...athleteIdInput}
+            {...athleteNameInput}
           />
         </label>
         <label className="block">
