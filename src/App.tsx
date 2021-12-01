@@ -27,7 +27,7 @@ const App: React.FC = () => (
     <div className="bg-primary text-white flex flex-col justify-center items-center text-center p-8">
       <img src="/logo.svg" alt="dfyb.run logo" className="w-16 md:w-24 opacity-50" />
       <h1 className="text-4xl md:text-6xl opacity-75">
-        dfyb.run
+        dfyb.run <span className="text-secondary">beta</span>
       </h1>
       <p className="pt-8">
         Add your barcodes for a certain 5K and 2K run 🏃💨 to your iPhone 📱 and Apple Watch ⌚
@@ -89,8 +89,11 @@ const App: React.FC = () => (
           <SectionHeader>
             Do I still need a physical barcode?
           </SectionHeader>
-          It is <strong>strongly advised</strong> that you still carry your physical barcode for its emergency contact information, or in case the
-          battery on your device runs out. Adding your barcode to your Apple Wallet is designed just as a convenience!
+          <strong>Yes.</strong> This tool is still in beta - and you shouldn't trust it as your only barcode.
+        </Paragraph>
+        <Paragraph>
+          Additionally, it is <strong>strongly</strong> advised that you carry your physical barcode for its emergency contact information.
+          Adding your barcode to your Apple Wallet is designed just as a convenience!
         </Paragraph>
         <Paragraph>
           <SectionHeader>
