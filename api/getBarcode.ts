@@ -1,15 +1,22 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import { readFileSync } from 'fs';
 import { PKPass } from 'passkit-generator'
-import { FileBuffers } from 'passkit-generator/lib/schemas';
+import { CertificatesSchema, FileBuffers } from 'passkit-generator/lib/schemas';
 import { join } from 'path';
-import getCerts from '../certs'
+import { decrypt } from '../certs/encryption'
+import encryptedCerts from '../certs.enc.json'
 
 const readLocalAsset = (filename: string) => readFileSync(join(__dirname, 'assets', filename))
 
+const certs: CertificatesSchema = Object.keys(encryptedCerts).reduce(
+  (acc, val) => ({ ...acc, [val]: decrypt(encryptedCerts[val], process.env.SECRETS_KEY) }),
+  {} as CertificatesSchema
+)
+
 export default async (_: VercelRequest, response: VercelResponse) => {
 
-  const buffers: FileBuffers = [
+  const buffers: FileBuffers = 
+  [
     'pass.json',
     'icon.png',
     'icon@2x.png',
@@ -18,7 +25,7 @@ export default async (_: VercelRequest, response: VercelResponse) => {
     'logo@3x.png'
   ].reduce((current, val) => ({ ...current, [val]: readLocalAsset(val) }), {})
 
-  const pass = new PKPass(buffers, getCerts(process.env.SECRETS_KEY), { serialNumber: 'A208864',  })
+  const pass = new PKPass(buffers, certs, { serialNumber: 'A208864' })
 
   pass.headerFields.push({
     key: 'HeaderInfo',
