@@ -79,15 +79,11 @@ const App: React.FC = () => (
           <SectionHeader>
             How do I use it on my Apple Watch?
           </SectionHeader>
-          Fill out the form with your details, and click "Generate Pass" to create a QR code. Scan it with your phone,
-          and add the pass to your Apple Wallet.
+          If you have an Apple Watch linked to your iPhone, your barcode will automatically be carried across.
         </Paragraph>
         <Paragraph>
-          If you're filling this out on your iPhone, you can click the "Add to Apple Wallet" button to add the pass directly.
-        </Paragraph>
-        <Paragraph>
-          After a run, simply double-click the side button to bring up your wallet, then tap on
-          the <strong>dfyb.run</strong> pass to bring up your barcode. Simply present this to the scanners at the end of the run!
+          After a run, double-click the side button to bring up your wallet, and scroll down to your **dfyb.run** pass.
+          Tap it, and it will bring up your barcode. Simply present this to the scanners at the end of the run!
         </Paragraph>
         <Paragraph>
           <SectionHeader>
