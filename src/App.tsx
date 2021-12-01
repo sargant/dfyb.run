@@ -1,6 +1,6 @@
 const App: React.FC = () => (
   <>
-    <a href="/api/getBarcode">
+    <a href="/api/generate">
       <img src="/add-to-apple-wallet.svg" height="50" />
     </a>
   </>
