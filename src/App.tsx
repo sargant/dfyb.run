@@ -32,6 +32,9 @@ const App: React.FC = () => (
       <p className="pt-8">
         Add your barcodes for a certain 5K and 2K run 🏃💨 to your iPhone 📱 and Apple Watch ⌚
       </p>
+      <p className="pt-2">
+        Feedback? Comments? 📧 <a href="mailto:hello@dfyb.run" className="whitespace-nowrap underline">hello@dfyb.run</a>
+      </p>
     </div>
     <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 md:gap-x-24 p-8">
       <div>
