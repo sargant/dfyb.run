@@ -82,7 +82,7 @@ const App: React.FC = () => (
           If you have an Apple Watch linked to your iPhone, your barcode will automatically be carried across.
         </Paragraph>
         <Paragraph>
-          After a run, double-click the side button to bring up your wallet, and scroll down to your **dfyb.run** pass.
+          After a run, double-click the side button to bring up your wallet, and scroll down to your <strong>dfyb.run</strong> pass.
           Tap it, and it will bring up your barcode. Simply present this to the scanners at the end of the run!
         </Paragraph>
         <Paragraph>
