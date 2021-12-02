@@ -1,11 +1,25 @@
 import { ChangeEvent, useState } from 'react'
 
-const useInput = (initialValue?: any) => {
+interface Options {
+  transform?: (value: string) => string
+  validate?: (value: string) => boolean
+}
+
+const useInput = (initialValue: string = '', opts: Options = {}) => {
+
   const [value, setValue] = useState(initialValue)
+
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value)
-    setValue(event.target.value)
+    let shouldUpdate = true
+    const newValue = opts.transform?.(event.target.value) ?? event.target.value
+    if (opts.validate?.(newValue) === false) {
+      shouldUpdate = false
+    }
+    if (shouldUpdate) {
+      setValue(newValue)
+    }
   }
+
   return { value, onChange }
 }
 

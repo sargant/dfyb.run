@@ -4,10 +4,10 @@ import qs from 'query-string'
 import useInput from "./useInput"
 
 const BarcodeForm: React.FC = () => {
-  const athleteNameInput = useInput()
-  const athleteIdInput = useInput()
-  const iceContactNameInput = useInput()
-  const iceContactNumberInput = useInput()
+  const athleteNameInput = useInput('')
+  const athleteIdInput = useInput('', { transform: v => v.toUpperCase(), validate: val => /^$|^A[1-9]?$|^A[1-9][0-9]{0,8}$/.test(val) })
+  const iceContactNameInput = useInput('')
+  const iceContactNumberInput = useInput('')
   const medicalInfoInput = useInput("None")
 
   const [isFormDirty, setIsFormDirty] = useState(true)
