@@ -33,6 +33,9 @@ export default async (request: VercelRequest, response: VercelResponse) => {
   const sanitizedAthleteId = sanitizeAthleteId(athleteId)
   const sanitizedAthleteName = athleteName && athleteName.trim().length > 0 ? athleteName.trim() : 'Unknown'
 
+  console.log(`Creating a new pass for ${sanitizedAthleteId}`)
+  console.log(`Sanitation details: ${JSON.stringify({ athleteId, sanitizedAthleteId, athleteName, sanitizedAthleteName })}`)
+
   const pass = await PKPass.from({
     model: join(__dirname, '..', 'pass-models', 'dfyb.run.pass'),
     certificates: {
@@ -41,7 +44,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
       wwdr: decrypt(encryptedCerts.wwdr, process.env.SECRETS_KEY),
     }
   }, {
-    serialNumber: athleteId
+    serialNumber: sanitizedAthleteId
   })
 
   pass.headerFields.push({
@@ -105,4 +108,6 @@ export default async (request: VercelRequest, response: VercelResponse) => {
   
   response.setHeader('Content-Type', 'application/vnd.apple.pkpass')
   response.send(pass.getAsBuffer())
+
+  console.log(`Pass generated successfully for ${athleteId}`)
 };
