@@ -118,13 +118,12 @@ const App: React.FC = () => (
         </SectionHeader>
         <Paragraph>
           The new <Link href="https://volunteer.parkrun.com/principles/virtual-volunteer">Virtual Volunteer app</Link> used by parkrun 
-          can scan QR codes, as well as the traditional "Code-128" barcodes. While not officially supported, they work just fine. However,
+          can scan QR codes, as well as the traditional "Code 128" barcodes. While not officially supported, they work just fine. However,
           this is another reason why you should also carry a physical barcode as a backup while this is in beta.
         </Paragraph>
         <Paragraph>
-          While Code-128 passes can be added to Apple Wallet and used on an iPhone, they can't be displayed on an Apple Watch, presumably
-          due to screen size issues. For those of you who prefer the traditional barcode, I will add an option in a future update for that
-          kind of pass.
+          If you want a traditional Code 128 barcode, uncheck the <em>"I want to use an Apple Watch"</em> option. The resulting pass will only work
+          on your iPhone.
         </Paragraph>
         <SectionHeader>
           Who made this?
