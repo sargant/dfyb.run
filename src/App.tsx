@@ -64,10 +64,10 @@ const App: React.FC = () => (
             </p>
           </div>
         </div>
+        <SectionHeader>
+          How do I use it on my iPhone?
+        </SectionHeader>
         <Paragraph>
-          <SectionHeader>
-            How do I use it on my iPhone?
-          </SectionHeader>
           Fill out the form with your details, and click "Generate Pass" to create a QR code. Scan it with your phone,
           and add the pass to your Apple Wallet.
         </Paragraph>
@@ -78,30 +78,43 @@ const App: React.FC = () => (
           After a run, simply double-click the side button to bring up your wallet, then tap on
           the <strong>dfyb.run</strong> pass to bring up your barcode. Simply present this to the scanners at the end of the run!
         </Paragraph>
+        <SectionHeader>
+          How do I use it on my Apple Watch?
+        </SectionHeader>
         <Paragraph>
-          <SectionHeader>
-            How do I use it on my Apple Watch?
-          </SectionHeader>
           If you have an Apple Watch linked to your iPhone, your barcode will automatically be carried across.
         </Paragraph>
         <Paragraph>
           After a run, double-click the side button to bring up your wallet, and scroll down to your <strong>dfyb.run</strong> pass.
           Tap it, and it will bring up your barcode. Simply present this to the scanners at the end of the run!
         </Paragraph>
+        <SectionHeader>
+          Do I still need a physical barcode?
+        </SectionHeader>
         <Paragraph>
-          <SectionHeader>
-            Do I still need a physical barcode?
-          </SectionHeader>
           <strong>Yes.</strong> This tool is still in beta - and you shouldn't trust it as your only barcode.
         </Paragraph>
         <Paragraph>
           Additionally, it is <strong>strongly</strong> advised that you carry your physical barcode for its emergency contact information.
           Adding your barcode to your Apple Wallet is designed just as a convenience!
         </Paragraph>
+        <SectionHeader>
+          Why is my barcode now a QR code?
+        </SectionHeader>
         <Paragraph>
-          <SectionHeader>
-            Who made this?
-          </SectionHeader>
+          The new <Link href="https://volunteer.parkrun.com/principles/virtual-volunteer">Virtual Volunteer app</Link> used by parkrun 
+          can scan QR codes, as well as the traditional "Code-128" barcodes. While not officially supported, they work just fine. However,
+          this is another reason why you should also carry a physical barcode as a backup while this is in beta.
+        </Paragraph>
+        <Paragraph>
+          While Code-128 passes can be added to Apple Wallet and used on an iPhone, they can't be displayed on an Apple Watch, presumably
+          due to screen size issues. For those of you who prefer the traditional barcode, I will add an option in a future update for that
+          kind of pass.
+        </Paragraph>
+        <SectionHeader>
+          Who made this?
+        </SectionHeader>
+        <Paragraph>
           This tool was made by Robert Sargant (<Link href="https://www.parkrun.org.uk/parkrunner/208864/all/">A208864</Link>) in order to scratch a personal itch.
           It's open source, and you can <Link href="https://github.com/sargant/dfyb.run">find it on Github</Link>!
         </Paragraph>
