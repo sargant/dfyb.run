@@ -11,22 +11,22 @@ const Link: React.FC<LinkProps> = ({ href, children }) => (
 )
 
 const SectionHeader: React.FC = ({ children }) => (
-  <h3 className="text-primary font-bold text-xl pb-2">
+  <h3 className="text-primary font-header font-bold text-xl mt-8 mb-2">
     {children}
   </h3>
 )
 
 const Paragraph: React.FC = ({ children }) => (
-  <p className="pb-4">
+  <p className="mb-4">
     {children}
   </p>
 )
 
 const App: React.FC = () => (
-  <div>
+  <>
     <div className="bg-primary text-white flex flex-col justify-center items-center text-center p-8">
-      <img src="/logo.svg" alt="dfyb.run logo" className="w-16 md:w-24 opacity-50" />
-      <h1 className="text-4xl md:text-6xl opacity-75">
+      <img src="/logo.svg" alt="dfyb.run logo" className="w-16 md:w-24" />
+      <h1 className="text-4xl md:text-6xl font-header">
         dfyb.run <span className="text-secondary">beta</span>
       </h1>
       <p className="pt-8">
@@ -46,7 +46,7 @@ const App: React.FC = () => (
           As iPhones and Apple Watches have the <Link href="https://www.apple.com/wallet/">Apple Wallet</Link> feature that make ID passes and barcodes easily accessible,
           it seemed like a great fit!
         </Paragraph>
-        <div className="flex flex-row justify-around pb-8">
+        <div className="flex flex-row justify-around my-4">
           <div className="w-64 bg-light-500 p-4 rounded-lg text-center">
             <div className="bg-black p-1 rounded-lg">
               <img className="object-cover" src="/iphone-screenshot.png" alt="The pass on an iPhone" />
@@ -129,7 +129,7 @@ const App: React.FC = () => (
         <BarcodeForm />
       </div>
     </div>
-  </div>
+  </>
 );
 
 export default App;

@@ -13,8 +13,10 @@ export default defineConfig({
       colors: {
         primary: '#204C72',
         secondary: '#ECD95F'
+      },
+      fontFamily: {
+        header: ['"Barlow Semi Condensed"', 'sans-serif']
       }
     }
   }
 })
-
