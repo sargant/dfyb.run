@@ -123,7 +123,7 @@ const App: React.FC = () => (
         </Paragraph>
         <Paragraph>
           If you want a traditional Code 128 barcode, uncheck the <em>"I want to use an Apple Watch"</em> option. The resulting pass will only work
-          on your iPhone.
+          on your iPhone. You can add both the Code 128 and QR style passes to your wallet if you want to be sure your phone will scan!
         </Paragraph>
         <SectionHeader>
           Who made this?
