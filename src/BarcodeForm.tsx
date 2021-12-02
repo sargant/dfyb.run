@@ -1,7 +1,21 @@
-import { useCallback, useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import QRCode from "react-qr-code"
 import qs from 'query-string'
 import useInput from "./useInput"
+
+const textInputClasses = "w-full border-0 border-b border-primary dark:border-secondary focus:border-primary dark:focus:border-secondary px-2 mt-1 bg-transparent shadow-none focus:bg-white dark:focus:bg-gray-600 text-black placeholder-black placeholder-opacity-50 dark:placeholder-opacity-50 dark:text-gray-300 dark:placeholder-gray-300 font-sans"
+
+const Label: React.FC<React.LabelHTMLAttributes<HTMLLabelElement>> = ({ children, className }) => (
+  <label className={`block font-bold text-base ${className}`}>
+    {children}
+  </label>
+)
+
+const Button: React.FC<Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, 'disabled' | 'children' | 'onClick' | 'className'>> = ({ children,  className, ...rest  }) => (
+  <button {...rest} className={`font-bold text-white bg-primary dark:bg-secondary dark:text-primary disabled:opacity-25 p-4 rounded-lg md:col-span-2 md:mx-32 ${className}`}>
+    {children}
+  </button>
+)
 
 const BarcodeForm: React.FC = () => {
   const athleteNameInput = useInput('')
@@ -10,15 +24,15 @@ const BarcodeForm: React.FC = () => {
   const iceContactNumberInput = useInput('')
   const medicalInfoInput = useInput("None")
 
-  const [isFormDirty, setIsFormDirty] = useState(true)
+  const [submitEnabled, setSubmitEnabled] = useState(false)
+  const [showResult, setShowResult] = useState(false)
   const [passUrl, setPassUrl] = useState('')
 
-  useEffect(() => {
-    setIsFormDirty(true)
-  }, [setIsFormDirty, athleteNameInput.value, athleteIdInput.value, iceContactNameInput.value, iceContactNumberInput.value, medicalInfoInput.value])
-
   const handleGeneratePass = useCallback(() => {
-    const query = qs.stringifyUrl({
+    if (!submitEnabled) {
+      return
+    }
+    setPassUrl(qs.stringifyUrl({
       url: `${process.env.REACT_APP_BASE_URL}api/generate`,
       query: {
         athleteId: athleteIdInput.value,
@@ -27,71 +41,82 @@ const BarcodeForm: React.FC = () => {
         iceContactNumber: iceContactNumberInput.value,
         medicalInfo: medicalInfoInput.value
       }
-    })
-    setPassUrl(query)
-    setIsFormDirty(false)
-    window.scrollTo(0, document.body.scrollHeight);
-  }, [setIsFormDirty, athleteNameInput.value, athleteIdInput.value, iceContactNameInput.value, iceContactNumberInput.value, medicalInfoInput.value])
+    }))
+    setShowResult(true)
+  }, [submitEnabled, setShowResult, athleteNameInput.value, athleteIdInput.value, iceContactNameInput.value, iceContactNumberInput.value, medicalInfoInput.value])
+
+  const handleCancelPass = useCallback(() => {
+    setShowResult(false)
+  }, [setShowResult])
+
+  useEffect(() => {
+    setSubmitEnabled(athleteIdInput.value.length > 1)
+  }, [setSubmitEnabled, athleteIdInput.value])
 
   return (
-    <div className="bg-gray-100 p-8 rounded-lg">
-      <h3 className="text-primary font-bold text-center text-2xl mb-8">
-        Your barcode details
-      </h3>
-      <div className="grid gap-8 grid-cols-1 md:grid-cols-2">
-        <label className="block">
-          <span>Athlete ID</span>
-          <input
-            type="text"
-            name="athleteId"
-            placeholder="e.g. A208864"
-            className="w-full rounded mt-1"
-            {...athleteIdInput}
-          />
-        </label>
-        <label className="block">
-          <span>Athlete Name</span>
-          <input
-            type="text"
-            name="athleteName"
-            className="w-full rounded mt-1"
-            {...athleteNameInput}
-          />
-        </label>
-        <label className="block">
-          <span><abbr title="In case of emergency">ICE</abbr> Contact Name</span>
-          <input
-            type="text"
-            name="iceName"
-            className="w-full rounded mt-1"
-            {...iceContactNameInput}
-          />
-        </label>
-        <label className="block">
-          <span><abbr title="In case of emergency">ICE</abbr> Contact Number</span>
-          <input
-            type="text"
-            name="iceNumber"
-            className="w-full rounded mt-1"
-            {...iceContactNumberInput}
-          />
-        </label>
-        <label className="block md:col-span-2">
-          <span>Essential medical information</span>
-          <input
-            type="text"
-            name="medicalInfo"
-            className="w-full rounded mt-1"
-            {...medicalInfoInput}
-          />
-        </label>
-        <button className="bg-primary text-white p-4 rounded-lg md:col-span-2 md:mx-32" onClick={handleGeneratePass}>
-          Generate Pass
-        </button>
-      </div>
-      {!isFormDirty && (
+    <div className="bg-gray-200 dark:bg-gray-700 p-8 rounded-lg">
+      {!showResult && (
+        <>
+          <h3 className="text-primary dark:text-secondary font-header font-bold text-center text-2xl mb-8">
+            Create your virtual barcode pass
+          </h3>
+          <div className="grid gap-8 grid-cols-1 md:grid-cols-2">
+            <Label>
+              Athlete ID <span className="text-red-700 dark:text-red-500 pl-1 font-normal">required</span>
+              <input
+                type="text"
+                placeholder="e.g. A208864"
+                className={textInputClasses}
+                {...athleteIdInput}
+              />
+            </Label>
+            <Label>
+              Athlete Name
+              <input
+                type="text"
+                className={textInputClasses}
+                {...athleteNameInput}
+              />
+            </Label>
+            <Label>
+              <abbr title="In case of emergency">ICE</abbr> Contact Name
+              <input
+                type="text"
+                className={textInputClasses}
+                {...iceContactNameInput}
+              />
+            </Label>
+            <Label>
+              <abbr title="In case of emergency">ICE</abbr> Contact Number
+              <input
+                type="text"
+                className={textInputClasses}
+                {...iceContactNumberInput}
+              />
+            </Label>
+            <Label className="md:col-span-2">
+              Essential medical information
+              <input
+                type="text"
+                className={textInputClasses}
+                {...medicalInfoInput}
+              />
+            </Label>
+            <Button disabled={!submitEnabled} onClick={handleGeneratePass} className="text-lg">
+              Generate Pass
+            </Button>
+          </div>
+        </>
+      )}
+      {showResult && (
         <div className="flex flex-col items-center">
-          <p className="md:mx-32 text-center mt-8 mb-4">
+          <h3 className="text-primary dark:text-secondary font-header font-bold text-center text-2xl mb-4">
+            Pass ready for runner {athleteIdInput.value}!
+          </h3>
+          <Button onClick={handleCancelPass}>
+            Go back and make changes
+          </Button>
+          <p className="md:mx-32 text-center my-4">
             Scan the QR code below with your iPhone to add your barcode to your Apple Wallet
           </p>
           <div className="flex-initial bg-white p-6 pb-4 rounded-lg border-width-2 flex-initial">
@@ -105,7 +130,7 @@ const BarcodeForm: React.FC = () => {
           </a>
         </div>
       )}
-      </div>
+    </div>
   )
 }
 

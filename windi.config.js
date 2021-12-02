@@ -1,6 +1,7 @@
 import { defineConfig } from 'windicss/helpers'
 
 export default defineConfig({
+  darkMode: 'media',
   plugins: [
     require('windicss/plugin/forms'),
   ],
