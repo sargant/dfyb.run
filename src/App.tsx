@@ -1,17 +1,32 @@
+import React from 'react';
 import BarcodeForm from './BarcodeForm'
 
-interface LinkProps {
-  href: string
-}
-
-const Link: React.FC<LinkProps> = ({ href, children }) => (
-  <a href={href} target="_blank" className="underline text-primary dark:text-secondary hover:no-underline whitespace-nowrap">
+const Link: React.FC<Pick<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>> = ({ href, children }) => (
+  <a 
+    href={href}
+    target="_blank"
+    rel="noreferrer"
+    className="
+      underline
+      text-primary 
+      dark:text-secondary
+      hover:no-underline
+      whitespace-nowrap
+    ">
     {children}
   </a>
 )
 
 const SectionHeader: React.FC = ({ children }) => (
-  <h3 className="text-primary dark:text-secondary font-header font-bold text-xl mt-8 mb-2">
+  <h3 className="
+    text-primary
+    dark:text-secondary
+    font-header
+    font-bold
+    text-xl
+    mt-8
+    mb-2
+  ">
     {children}
   </h3>
 )
@@ -103,13 +118,12 @@ const App: React.FC = () => (
         </SectionHeader>
         <Paragraph>
           The new <Link href="https://volunteer.parkrun.com/principles/virtual-volunteer">Virtual Volunteer app</Link> used by parkrun 
-          can scan QR codes, as well as the traditional "Code-128" barcodes. While not officially supported, they work just fine. However,
+          can scan QR codes, as well as the traditional "Code 128" barcodes. While not officially supported, they work just fine. However,
           this is another reason why you should also carry a physical barcode as a backup while this is in beta.
         </Paragraph>
         <Paragraph>
-          While Code-128 passes can be added to Apple Wallet and used on an iPhone, they can't be displayed on an Apple Watch, presumably
-          due to screen size issues. For those of you who prefer the traditional barcode, I will add an option in a future update for that
-          kind of pass.
+          If you want a traditional Code 128 barcode, uncheck the <em>"I want to use an Apple Watch"</em> option. The resulting pass will only work
+          on your iPhone. You can add both the Code 128 and QR style passes to your wallet if you want to be sure your phone will scan!
         </Paragraph>
         <SectionHeader>
           Who made this?

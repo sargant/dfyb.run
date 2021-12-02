@@ -1,7 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react"
 import QRCode from "react-qr-code"
 import qs from 'query-string'
+import { Tooltip } from 'react-tippy'
 import useInput from "./useInput"
+import useInputCheckbox from "./useInputCheckbox"
 
 const textInputClasses = "w-full border-0 border-b border-primary dark:border-secondary focus:border-primary dark:focus:border-secondary px-2 mt-1 bg-transparent shadow-none focus:bg-white dark:focus:bg-gray-600 text-black placeholder-black placeholder-opacity-50 dark:placeholder-opacity-50 dark:text-gray-300 dark:placeholder-gray-300 font-sans"
 
@@ -23,6 +25,7 @@ const BarcodeForm: React.FC = () => {
   const iceContactNameInput = useInput('')
   const iceContactNumberInput = useInput('')
   const medicalInfoInput = useInput("None")
+  const useQrCodeInput = useInputCheckbox(true)
 
   const [submitEnabled, setSubmitEnabled] = useState(false)
   const [showResult, setShowResult] = useState(false)
@@ -39,11 +42,21 @@ const BarcodeForm: React.FC = () => {
         athleteName: athleteNameInput.value,
         iceContactName: iceContactNameInput.value,
         iceContactNumber: iceContactNumberInput.value,
-        medicalInfo: medicalInfoInput.value
+        medicalInfo: medicalInfoInput.value,
+        useQrCode: useQrCodeInput.checked ? 'yes' : ''
       }
     }))
     setShowResult(true)
-  }, [submitEnabled, setShowResult, athleteNameInput.value, athleteIdInput.value, iceContactNameInput.value, iceContactNumberInput.value, medicalInfoInput.value])
+  }, [
+    submitEnabled,
+    setShowResult,
+    athleteNameInput.value,
+    athleteIdInput.value,
+    iceContactNameInput.value, 
+    iceContactNumberInput.value,
+    medicalInfoInput.value,
+    useQrCodeInput.checked
+  ])
 
   const handleCancelPass = useCallback(() => {
     setShowResult(false)
@@ -102,6 +115,21 @@ const BarcodeForm: React.FC = () => {
                 {...medicalInfoInput}
               />
             </Label>
+            <div className="text-base pb-8 lg:pb-0 md:col-span-2 flex flex-row items-center">
+              <input type="checkbox" {...useQrCodeInput} className="w-6 h-6 rounded bg-primary dark:text-gray-500 dark:bg-gray-500 shadow-none border-0 outline-none text-primary dark:text-gray-500 mr-4" />
+              <div className="flex-1 leading-tight">
+                I want to use an Apple Watch<br />
+                <Tooltip
+                  animation="none"
+                  animateFill={false}
+                  title="The Apple Watch does not support traditional barcodes. Enabling this option will produce a pass with a QR code instead. Volunteers can scan QR codes just fine, but they are not officially supported."
+                  position="bottom"
+                  size="small"
+                >
+                  <span className="text-sm text-primary dark:text-secondary border-b border-dotted border-primary dark:border-secondary opacity-75">(why does this matter?)</span>
+                </Tooltip>
+              </div>
+            </div>
             <Button disabled={!submitEnabled} onClick={handleGeneratePass} className="text-lg">
               Generate Pass
             </Button>
