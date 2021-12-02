@@ -23,7 +23,8 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     athleteName,
     iceContactName,
     iceContactNumber,
-    medicalInfo
+    medicalInfo,
+    useQrCode
   } = sanitizeVercelQuery(request.query)
 
   if (!athleteId) {
@@ -102,7 +103,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
 
   pass.setBarcodes({
     message: sanitizedAthleteId,
-    format: 'PKBarcodeFormatQR',
+    format: !!useQrCode ? 'PKBarcodeFormatQR' : 'PKBarcodeFormatCode128',
     altText: sanitizedAthleteId
   })
   

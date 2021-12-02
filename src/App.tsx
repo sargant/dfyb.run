@@ -1,17 +1,32 @@
+import React from 'react';
 import BarcodeForm from './BarcodeForm'
 
-interface LinkProps {
-  href: string
-}
-
-const Link: React.FC<LinkProps> = ({ href, children }) => (
-  <a href={href} target="_blank" className="underline text-primary dark:text-secondary hover:no-underline whitespace-nowrap">
+const Link: React.FC<Pick<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>> = ({ href, children }) => (
+  <a 
+    href={href}
+    target="_blank"
+    rel="noreferrer"
+    className="
+      underline
+      text-primary 
+      dark:text-secondary
+      hover:no-underline
+      whitespace-nowrap
+    ">
     {children}
   </a>
 )
 
 const SectionHeader: React.FC = ({ children }) => (
-  <h3 className="text-primary dark:text-secondary font-header font-bold text-xl mt-8 mb-2">
+  <h3 className="
+    text-primary
+    dark:text-secondary
+    font-header
+    font-bold
+    text-xl
+    mt-8
+    mb-2
+  ">
     {children}
   </h3>
 )
