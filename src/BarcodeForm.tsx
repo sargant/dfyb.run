@@ -19,7 +19,7 @@ const BarcodeForm: React.FC = () => {
 
   const handleGeneratePass = useCallback(() => {
     const query = qs.stringifyUrl({
-      url: 'https://dfyb.run/api/generate',
+      url: `${process.env.REACT_APP_BASE_URL}api/generate`,
       query: {
         athleteId: athleteIdInput.value,
         athleteName: athleteNameInput.value,
