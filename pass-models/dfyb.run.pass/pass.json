@@ -3,10 +3,9 @@
   "organizationName": "dfyb.run",
   "teamIdentifier": "8T42JWNSJ2",
   "passTypeIdentifier": "pass.run.dfyb",
-  "description": "dfyb.run - runner's barcode",
+  "description": "dfyb.run",
   "foregroundColor": "rgb(255, 255, 255)",
   "labelColor": "rgb(236, 217, 95)",
   "backgroundColor": "rgb(32, 76 , 114)",
-  "logoText": "dfyb.run",
   "generic": {}
 }
