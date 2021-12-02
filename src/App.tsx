@@ -5,13 +5,13 @@ interface LinkProps {
 }
 
 const Link: React.FC<LinkProps> = ({ href, children }) => (
-  <a href={href} className="underline text-primary hover:no-underline whitespace-nowrap">
+  <a href={href} className="underline text-primary dark:text-secondary hover:no-underline whitespace-nowrap">
     {children}
   </a>
 )
 
 const SectionHeader: React.FC = ({ children }) => (
-  <h3 className="text-primary font-header font-bold text-xl mt-8 mb-2">
+  <h3 className="text-primary dark:text-secondary font-header font-bold text-xl mt-8 mb-2">
     {children}
   </h3>
 )
@@ -47,16 +47,16 @@ const App: React.FC = () => (
           it seemed like a great fit!
         </Paragraph>
         <div className="flex flex-row justify-around my-4">
-          <div className="w-64 bg-light-500 p-4 rounded-lg text-center">
-            <div className="bg-black p-1 rounded-lg">
+          <div className="w-64 bg-gray-200 dark:bg-gray-700 p-4 rounded-lg text-center">
+            <div className="bg-black p-2 rounded-lg">
               <img className="object-cover" src="/iphone-screenshot.png" alt="The pass on an iPhone" />
             </div>
             <p className="pt-4">
               On an iPhone 📱
             </p>
           </div>
-          <div className="w-64 bg-light-500 p-4 rounded-lg text-center">
-            <div className="bg-black p-1 rounded-lg">
+          <div className="w-64 bg-gray-200 dark:bg-gray-700 p-4 rounded-lg text-center">
+            <div className="bg-black p-2 rounded-lg">
               <img className="object-cover" src="/watch-screenshot.png" alt="The pass on an Apple Watch" />
             </div>
             <p className="pt-4">
