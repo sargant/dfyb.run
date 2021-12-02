@@ -31,7 +31,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
   }
 
   const sanitizedAthleteId = sanitizeAthleteId(athleteId)
-  const sanitizedAthleteName = athleteName ?? 'Unknown'
+  const sanitizedAthleteName = athleteName && athleteName.trim().length > 0 ? athleteName.trim() : 'Unknown'
 
   const pass = await PKPass.from({
     model: join(__dirname, '..', 'pass-models', 'dfyb.run.pass'),
