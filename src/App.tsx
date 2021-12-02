@@ -5,7 +5,7 @@ interface LinkProps {
 }
 
 const Link: React.FC<LinkProps> = ({ href, children }) => (
-  <a href={href} className="underline text-primary dark:text-secondary hover:no-underline whitespace-nowrap">
+  <a href={href} target="_blank" className="underline text-primary dark:text-secondary hover:no-underline whitespace-nowrap">
     {children}
   </a>
 )
