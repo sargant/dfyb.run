@@ -122,7 +122,7 @@ const BarcodeForm: React.FC = () => {
                 <Tooltip
                   animation="none"
                   animateFill={false}
-                  title="The Apple Watch does not support traditional barcodes. Enabling this option will produce a pass with a QR code instead."
+                  title="The Apple Watch does not support traditional barcodes. Enabling this option will produce a pass with a QR code instead. Volunteers can scan QR codes just fine, but they are not officially supported."
                   position="bottom"
                   size="small"
                 >
