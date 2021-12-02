@@ -1,19 +1,37 @@
-import { VercelRequest, VercelResponse } from '@vercel/node';
+import { VercelRequest, VercelRequestQuery, VercelResponse } from '@vercel/node';
 import { PKPass } from 'passkit-generator'
 import { join } from 'path';
 import { decrypt } from '../utils/encryption'
 
 import encryptedCerts from '../certs.enc.json'
 
+export const sanitizeVercelQuery = (query: VercelRequestQuery): Record<string, string> =>
+  Object.entries(query).reduce(
+    (result, [key, value]) => ({ ...result, [key]: Array.isArray(value) ? value[0] : value }),
+    {}
+  )
+
+export const sanitizeAthleteId = (athleteId: string) => {
+  const trimmedId = athleteId.trim().toUpperCase()
+  return (/^[0-9]+$/.test(trimmedId)) ? `A${trimmedId}` : trimmedId
+}
+
 export default async (request: VercelRequest, response: VercelResponse) => {
 
-  const { 
-    athleteName,
+  const {
     athleteId,
+    athleteName,
     iceContactName,
     iceContactNumber,
     medicalInfo
-  } = request.query
+  } = sanitizeVercelQuery(request.query)
+
+  if (!athleteId) {
+    throw Error('No athlete ID provided')
+  }
+
+  const sanitizedAthleteId = sanitizeAthleteId(athleteId)
+  const sanitizedAthleteName = athleteName ?? 'Unknown'
 
   const pass = await PKPass.from({
     model: join(__dirname, '..', 'pass-models', 'dfyb.run.pass'),
@@ -23,68 +41,66 @@ export default async (request: VercelRequest, response: VercelResponse) => {
       wwdr: decrypt(encryptedCerts.wwdr, process.env.SECRETS_KEY),
     }
   }, {
-    serialNumber: `${athleteId}`
+    serialNumber: athleteId
   })
 
   pass.headerFields.push({
     key: 'headerAthlete',
-    label: `${athleteName}`,
-    value: `${athleteId}`
+    label: sanitizedAthleteName,
+    value: sanitizedAthleteId
   })
 
   pass.primaryFields.push({
     key: 'athleteName',
     label: 'Athlete Name',
-    value: `${athleteName}`
+    value: sanitizedAthleteName
   })
 
-  pass.secondaryFields.push({
-    key: 'iceContactNumber',
-    label: 'ICE',
-    value: `${iceContactNumber}`
-  })
+  pass.backFields.push(
+    { key: 'backAthleteName', label: 'Athlete Name', value: sanitizedAthleteName },
+    { key: 'backAthleteId',   label: 'Athlete ID',   value: sanitizedAthleteId }
+  )
 
-  pass.secondaryFields.push({
-    key: 'iceContactName',
-    label: 'Contact Name',
-    value: `${iceContactName}`
-  })
+  if (iceContactNumber) {
+    pass.secondaryFields.push({
+      key: 'iceContactNumber',
+      label: 'ICE',
+      value: iceContactNumber
+    })
 
-  pass.auxiliaryFields.push({
-    key: 'medicalInfo',
-    label: 'Medical Info',
-    value: `${medicalInfo}`
-  })
+    pass.backFields.push({
+      key: 'backIceContact',
+      label: 'Emergency Contact (ICE)',
+      value: iceContactName ? `${iceContactName}\n${iceContactNumber}` : iceContactNumber
+    })
+  }
 
-  pass.backFields.push({
-    key: 'backAthleteName',
-    label: 'Athlete Name',
-    value: `${athleteName}`
-  })
+  if (iceContactName) {
+    pass.secondaryFields.push({
+      key: 'iceContactName',
+      label: 'Contact Name',
+      value: iceContactName
+    })
+  }
 
-  
-  pass.backFields.push({
-    key: 'backAthleteId',
-    label: 'Athlete ID',
-    value: `${athleteId}`
-  })
+  if (medicalInfo) {
+    pass.auxiliaryFields.push({
+      key: 'medicalInfo',
+      label: 'Medical Info',
+      value: medicalInfo
+    })
 
-  pass.backFields.push({
-    key: 'backIceContact',
-    label: 'Emergency Contact (ICE)',
-    value: `${iceContactName}\n${iceContactNumber}`
-  })
-
-  pass.backFields.push({
-    key: 'backMedicalInfo',
-    label: 'Medical Info',
-    value: `${medicalInfo}`
-  })
+    pass.backFields.push({ 
+      key: 'backMedicalInfo',
+      label: 'Medical Info',
+      value: medicalInfo
+    })
+  }
 
   pass.setBarcodes({
-    message: `${athleteId}`,
+    message: sanitizedAthleteId,
     format: 'PKBarcodeFormatQR',
-    altText: `${athleteId}`
+    altText: sanitizedAthleteId
   })
   
   response.setHeader('Content-Type', 'application/vnd.apple.pkpass')

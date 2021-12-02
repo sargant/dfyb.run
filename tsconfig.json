@@ -13,6 +13,7 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
@@ -21,6 +22,9 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
+    "api",
+    "certs",
+    "src",
+    "utils"
   ]
 }
