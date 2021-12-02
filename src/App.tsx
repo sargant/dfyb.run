@@ -5,7 +5,7 @@ interface LinkProps {
 }
 
 const Link: React.FC<LinkProps> = ({ href, children }) => (
-  <a href={href} className="underline text-primary dark:text-secondary hover:no-underline whitespace-nowrap">
+  <a href={href} target="_blank" className="underline text-primary dark:text-secondary hover:no-underline whitespace-nowrap">
     {children}
   </a>
 )
@@ -36,8 +36,8 @@ const App: React.FC = () => (
         Feedback? Comments? 📧 <a href="mailto:hello@dfyb.run" className="whitespace-nowrap underline">hello@dfyb.run</a>
       </p>
     </div>
-    <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 md:gap-x-24 p-8">
-      <div>
+    <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 md:gap-x-24 md:p-8">
+      <div className="p-8 md:p-0">
         <Paragraph>
           In <Link href="https://blog.parkrun.com/uk/2021/11/22/scanning-from-mobile-devices/">November 2021</Link> parkrun HQ
           announced that virtual barcodes were now acceptable at their events, and that a physical barcode was no longer mandatory.
@@ -47,7 +47,7 @@ const App: React.FC = () => (
           it seemed like a great fit!
         </Paragraph>
         <div className="flex flex-row justify-around my-4">
-          <div className="w-64 bg-gray-200 dark:bg-gray-700 p-4 rounded-lg text-center">
+          <div className="w-64 bg-gray-200 dark:bg-gray-700 p-4 rounded-lg text-center mr-4">
             <div className="bg-black p-2 rounded-lg">
               <img className="object-cover" src="/iphone-screenshot.png" alt="The pass on an iPhone" />
             </div>
@@ -55,7 +55,7 @@ const App: React.FC = () => (
               On an iPhone 📱
             </p>
           </div>
-          <div className="w-64 bg-gray-200 dark:bg-gray-700 p-4 rounded-lg text-center">
+          <div className="w-64 bg-gray-200 dark:bg-gray-700 p-4 rounded-lg text-center ml-4">
             <div className="bg-black p-2 rounded-lg">
               <img className="object-cover" src="/watch-screenshot.png" alt="The pass on an Apple Watch" />
             </div>

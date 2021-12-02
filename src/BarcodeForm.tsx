@@ -6,13 +6,13 @@ import useInput from "./useInput"
 const textInputClasses = "w-full border-0 border-b border-primary dark:border-secondary focus:border-primary dark:focus:border-secondary px-2 mt-1 bg-transparent shadow-none focus:bg-white dark:focus:bg-gray-600 text-black placeholder-black placeholder-opacity-50 dark:placeholder-opacity-50 dark:text-gray-300 dark:placeholder-gray-300 font-sans"
 
 const Label: React.FC<React.LabelHTMLAttributes<HTMLLabelElement>> = ({ children, className }) => (
-  <label className={`block font-bold text-base ${className}`}>
+  <label className={`block font-bold text-base pb-8 lg:pb-0 ${className}`}>
     {children}
   </label>
 )
 
 const Button: React.FC<Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, 'disabled' | 'children' | 'onClick' | 'className'>> = ({ children,  className, ...rest  }) => (
-  <button {...rest} className={`font-bold text-white bg-primary dark:bg-secondary dark:text-primary disabled:opacity-25 p-4 rounded-lg md:col-span-2 md:mx-32 ${className}`}>
+  <button {...rest} className={`font-bold text-white bg-primary dark:bg-secondary dark:text-primary disabled:opacity-25 p-4 rounded-lg lg:col-span-2 w-full whitespace-nowrap ${className}`}>
     {children}
   </button>
 )
@@ -54,13 +54,13 @@ const BarcodeForm: React.FC = () => {
   }, [setSubmitEnabled, athleteIdInput.value])
 
   return (
-    <div className="bg-gray-200 dark:bg-gray-700 p-8 rounded-lg">
+    <div className="bg-gray-200 dark:bg-gray-700 p-8 sm:rounded-lg">
       {!showResult && (
         <>
           <h3 className="text-primary dark:text-secondary font-header font-bold text-center text-2xl mb-8">
             Create your virtual barcode pass
           </h3>
-          <div className="grid gap-8 grid-cols-1 md:grid-cols-2">
+          <div className="lg:grid gap-8 grid-cols-0">
             <Label>
               Athlete ID <span className="text-red-700 dark:text-red-500 pl-1 font-normal">required</span>
               <input
@@ -116,13 +116,13 @@ const BarcodeForm: React.FC = () => {
           <Button onClick={handleCancelPass}>
             Go back and make changes
           </Button>
-          <p className="md:mx-32 text-center my-4">
+          <p className="xl:mx-32 text-center my-4">
             Scan the QR code below with your iPhone to add your barcode to your Apple Wallet
           </p>
           <div className="flex-initial bg-white p-6 pb-4 rounded-lg border-width-2 flex-initial">
             <QRCode value={passUrl} size={128} />
           </div>
-          <p className="md:mx-32 text-center mt-8 mb-4">
+          <p className="xl:mx-32 text-center mt-8 mb-4">
             If you're on your iPhone, click the button below to add the pass directly to Apple Wallet
           </p>
           <a href={passUrl}>
