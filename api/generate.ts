@@ -45,7 +45,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
       wwdr: decrypt(encryptedCerts.wwdr, process.env.SECRETS_KEY),
     }
   }, {
-    serialNumber: sanitizedAthleteId
+    serialNumber: `${sanitizedAthleteId}-${!!useQrCode ? 'qr' : 'c128'}`
   })
 
   pass.headerFields.push({
