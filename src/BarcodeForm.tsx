@@ -35,18 +35,25 @@ const BarcodeForm: React.FC = () => {
     if (!submitEnabled) {
       return
     }
+
+    const query = {
+      athleteId: athleteIdInput.value,
+      athleteName: athleteNameInput.value,
+      iceContactName: iceContactNameInput.value,
+      iceContactNumber: iceContactNumberInput.value,
+      medicalInfo: medicalInfoInput.value,
+      useQrCode: useQrCodeInput.checked ? 'yes' : ''
+    }
+
+    const encoded = Buffer.from(JSON.stringify(query), 'utf-8').toString('base64')
+
     setPassUrl(qs.stringifyUrl({
       url: `${process.env.REACT_APP_BASE_URL}api/generate`,
-      query: {
-        athleteId: athleteIdInput.value,
-        athleteName: athleteNameInput.value,
-        iceContactName: iceContactNameInput.value,
-        iceContactNumber: iceContactNumberInput.value,
-        medicalInfo: medicalInfoInput.value,
-        useQrCode: useQrCodeInput.checked ? 'yes' : ''
-      }
+      query: { q: encoded }
     }))
+
     setShowResult(true)
+  
   }, [
     submitEnabled,
     setShowResult,
