@@ -30,7 +30,7 @@ const generateBarcode = async (opt: BarcodeOptions) => {
   console.log(`Creating a new pass for ${opt.athleteId}`)
 
   if (!opt.athleteId) {
-    throw Error('No athlete ID provided')
+    throw 'No athlete ID provided'
   }
 
   const sanitizedAthleteId = sanitizeAthleteId(opt.athleteId)
