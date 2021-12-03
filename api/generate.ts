@@ -16,26 +16,32 @@ export const sanitizeAthleteId = (athleteId: string) => {
   return (/^[0-9]+$/.test(trimmedId)) ? `A${trimmedId}` : trimmedId
 }
 
-export default async (request: VercelRequest, response: VercelResponse) => {
+interface BarcodeOptions {
+  athleteId?: string
+  athleteName?: string
+  iceContactName?: string
+  iceContactNumber?: string
+  medicalInfo?: string
+  useQrCode?: string
+}
 
-  const {
-    athleteId,
-    athleteName,
-    iceContactName,
-    iceContactNumber,
-    medicalInfo,
-    useQrCode
-  } = sanitizeVercelQuery(request.query)
+const generateBarcode = async (opt: BarcodeOptions) => {
 
-  if (!athleteId) {
+  console.log(`Creating a new pass for ${opt.athleteId}`)
+
+  if (!opt.athleteId) {
     throw Error('No athlete ID provided')
   }
 
-  const sanitizedAthleteId = sanitizeAthleteId(athleteId)
-  const sanitizedAthleteName = athleteName && athleteName.trim().length > 0 ? athleteName.trim() : 'Unknown'
+  const sanitizedAthleteId = sanitizeAthleteId(opt.athleteId)
+  const sanitizedAthleteName = opt.athleteName && opt.athleteName.trim().length > 0 ? opt.athleteName.trim() : 'Unknown'
 
-  console.log(`Creating a new pass for ${sanitizedAthleteId}`)
-  console.log(`Sanitation details: ${JSON.stringify({ athleteId, sanitizedAthleteId, athleteName, sanitizedAthleteName })}`)
+  console.log(`Sanitation details: ${JSON.stringify({ 
+    athleteId: opt.athleteId,
+    sanitizedAthleteId,
+    athleteName: opt.athleteName,
+    sanitizedAthleteName
+  })}`)
 
   const pass = await PKPass.from({
     model: join(__dirname, '..', 'pass-models', 'dfyb.run.pass'),
@@ -45,7 +51,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
       wwdr: decrypt(encryptedCerts.wwdr, process.env.SECRETS_KEY),
     }
   }, {
-    serialNumber: `${sanitizedAthleteId}-${!!useQrCode ? 'qr' : 'c128'}`
+    serialNumber: `${sanitizedAthleteId}-${!!opt.useQrCode ? 'qr' : 'c128'}`
   })
 
   pass.headerFields.push({
@@ -65,50 +71,59 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     { key: 'backAthleteId',   label: 'Athlete ID',   value: sanitizedAthleteId }
   )
 
-  if (iceContactNumber) {
+  if (opt.iceContactNumber) {
     pass.secondaryFields.push({
       key: 'iceContactNumber',
       label: 'ICE',
-      value: iceContactNumber
+      value: opt.iceContactNumber
     })
 
     pass.backFields.push({
       key: 'backIceContact',
       label: 'Emergency Contact (ICE)',
-      value: iceContactName ? `${iceContactName}\n${iceContactNumber}` : iceContactNumber
+      value: opt.iceContactName ? `${opt.iceContactName}\n${opt.iceContactNumber}` : opt.iceContactNumber
     })
   }
 
-  if (iceContactName) {
+  if (opt.iceContactName) {
     pass.secondaryFields.push({
       key: 'iceContactName',
       label: 'Contact Name',
-      value: iceContactName
+      value: opt.iceContactName
     })
   }
 
-  if (medicalInfo) {
+  if (opt.medicalInfo) {
     pass.auxiliaryFields.push({
       key: 'medicalInfo',
       label: 'Medical Info',
-      value: medicalInfo
+      value: opt.medicalInfo
     })
 
     pass.backFields.push({ 
       key: 'backMedicalInfo',
       label: 'Medical Info',
-      value: medicalInfo
+      value: opt.medicalInfo
     })
   }
 
   pass.setBarcodes({
     message: sanitizedAthleteId,
-    format: !!useQrCode ? 'PKBarcodeFormatQR' : 'PKBarcodeFormatCode128',
+    format: !!opt.useQrCode ? 'PKBarcodeFormatQR' : 'PKBarcodeFormatCode128',
     altText: sanitizedAthleteId
   })
-  
-  response.setHeader('Content-Type', 'application/vnd.apple.pkpass')
-  response.send(pass.getAsBuffer())
 
-  console.log(`Pass generated successfully for ${athleteId}`)
-};
+  console.log(`Pass generation complete for ${opt.athleteId}`)
+
+  return pass
+}
+
+export default async (request: VercelRequest, response: VercelResponse) => {
+  try {
+    const pass = await generateBarcode(sanitizeVercelQuery(request.query))
+    response.setHeader('Content-Type', 'application/vnd.apple.pkpass')
+    response.status(200).send(pass.getAsBuffer())
+  } catch (error) {
+    response.status(400).send(JSON.stringify(error))
+  }
+}
