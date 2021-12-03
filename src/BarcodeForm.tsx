@@ -37,7 +37,6 @@ const BarcodeForm: React.FC = () => {
     }
 
     const query = {
-      athleteId: athleteIdInput.value,
       athleteName: athleteNameInput.value,
       iceContactName: iceContactNameInput.value,
       iceContactNumber: iceContactNumberInput.value,
@@ -49,7 +48,7 @@ const BarcodeForm: React.FC = () => {
 
     setPassUrl(qs.stringifyUrl({
       url: `${process.env.REACT_APP_BASE_URL}api/generate`,
-      query: { q: encoded }
+      query: { athleteId: athleteIdInput.value, q: encoded }
     }))
 
     setShowResult(true)
