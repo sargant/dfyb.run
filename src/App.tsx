@@ -48,7 +48,7 @@ const App: React.FC = () => (
         Add your barcodes for a certain 5K and 2K run 🏃💨 to your iPhone 📱 and Apple Watch ⌚
       </p>
       <p className="pt-2">
-        Feedback? Comments? 📧 <a href="mailto:hello@dfyb.run" className="whitespace-nowrap underline">hello@dfyb.run</a>
+        Feedback? Comments?  📧 <a href="mailto:hello@dfyb.run" className="whitespace-nowrap underline">hello@dfyb.run</a> or tweet me at <a href="https://twitter.com/dfyb_run" className="whitespace-nowrap underline">@dfyb_run</a>
       </p>
     </div>
     <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 md:gap-x-24 md:p-8">
@@ -133,7 +133,7 @@ const App: React.FC = () => (
           It's open source, and you can <Link href="https://github.com/sargant/dfyb.run">find it on Github</Link>!
         </Paragraph>
         <Paragraph>
-          If you'd like to give me any feedback, you can find me <Link href="https://twitter.com/sargant">on Twitter</Link>.
+          If you'd like to give me any feedback, you can find me at <Link href="https://twitter.com/dfyb_rub">@dfyb_run</Link> or <Link href="https://twitter.com/sargant">@sargant</Link> on Twitter.
         </Paragraph>
         <Paragraph>
           If you'd like to tip a little something to cover the costs of developing this, please go to <Link href="https://ko-fi.com/sargant">ko-fi.com/sargant</Link> 🙂
