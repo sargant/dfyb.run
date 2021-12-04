@@ -17,7 +17,6 @@ export const sanitizeAthleteId = (athleteId: string) => {
 }
 
 interface BarcodeOptions {
-  q?: string
   athleteId?: string
   athleteName?: string
   iceContactName?: string
@@ -26,12 +25,7 @@ interface BarcodeOptions {
   useQrCode?: string
 }
 
-const generateBarcode = async ({ q, ...rest }: BarcodeOptions) => {
-
-  // If q is present, it's base64 encoded options - use these as the base
-  const opt: Omit<BarcodeOptions, 'q'> = !!q
-    ? { ...JSON.parse(Buffer.from(q, 'base64').toString('utf-8')), ...rest }
-    : rest
+const generateBarcode = async (opt: BarcodeOptions) => {
 
   console.log(`Creating a new pass for ${opt.athleteId}`)
 

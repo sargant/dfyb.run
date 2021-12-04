@@ -1,4 +1,5 @@
 import { defineConfig } from 'windicss/helpers'
+import colors from 'windicss/colors'
 
 export default defineConfig({
   darkMode: 'media',
@@ -13,7 +14,8 @@ export default defineConfig({
     extend: {
       colors: {
         primary: '#204C72',
-        secondary: '#ECD95F'
+        secondary: '#ECD95F',
+        gray: colors.trueGray
       },
       fontFamily: {
         header: ['"Barlow Semi Condensed"', 'sans-serif']

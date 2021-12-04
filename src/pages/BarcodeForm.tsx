@@ -2,8 +2,9 @@ import React, { useCallback, useEffect, useState } from "react"
 import QRCode from "react-qr-code"
 import qs from 'query-string'
 import { Tooltip } from 'react-tippy'
-import useInput from "./useInput"
-import useInputCheckbox from "./useInputCheckbox"
+
+import useInput from "src/useInput"
+import useInputCheckbox from "src/useInputCheckbox"
 
 const textInputClasses = "w-full border-0 border-b border-primary dark:border-secondary focus:border-primary dark:focus:border-secondary px-2 mt-1 bg-transparent shadow-none focus:bg-white dark:focus:bg-gray-600 text-black placeholder-black placeholder-opacity-50 dark:placeholder-opacity-50 dark:text-gray-300 dark:placeholder-gray-300 font-sans"
 
@@ -37,6 +38,7 @@ const BarcodeForm: React.FC = () => {
     }
 
     const query = {
+      atleteId: athleteIdInput.value,
       athleteName: athleteNameInput.value,
       iceContactName: iceContactNameInput.value,
       iceContactNumber: iceContactNumberInput.value,
@@ -44,11 +46,9 @@ const BarcodeForm: React.FC = () => {
       useQrCode: useQrCodeInput.checked ? 'yes' : ''
     }
 
-    const encoded = Buffer.from(JSON.stringify(query), 'utf-8').toString('base64')
-
     setPassUrl(qs.stringifyUrl({
       url: `${process.env.REACT_APP_BASE_URL}api/generate`,
-      query: { athleteId: athleteIdInput.value, q: encoded }
+      query
     }))
 
     setShowResult(true)
