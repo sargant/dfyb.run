@@ -17,7 +17,7 @@ export const sanitizeAthleteId = (athleteId: string) => {
 }
 
 interface BarcodeOptions {
-  athleteId?: string
+  athleteId: string
   athleteName?: string
   iceContactName?: string
   iceContactNumber?: string
