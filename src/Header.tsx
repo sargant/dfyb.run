@@ -22,7 +22,7 @@ const HeaderLink: React.FC<{ path: string }> = ({ children, path }) => {
 
 const Header: React.FC = () => (
   <div className="bg-primary text-white">
-    <div className="flex flex-col justify-center items-center text-center py-8 px-16 sm:px-8">
+    <div className="flex flex-col justify-center items-center text-center p-8 sm:px-32">
       <img src="/logo.svg" alt="dfyb.run logo" className="w-16 md:w-24" />
       <h1 className="text-4xl md:text-6xl font-header">
         dfyb.run <span className="text-secondary">beta</span>
