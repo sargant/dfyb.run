@@ -38,7 +38,7 @@ const BarcodeForm: React.FC = () => {
     }
 
     const query = {
-      atleteId: athleteIdInput.value,
+      athleteId: athleteIdInput.value,
       athleteName: athleteNameInput.value,
       iceContactName: iceContactNameInput.value,
       iceContactNumber: iceContactNumberInput.value,
