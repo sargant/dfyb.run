@@ -1,4 +1,4 @@
-import crypto from 'crypto'
+import crypto, { HexBase64BinaryEncoding } from 'crypto'
 
 const algorithm = 'aes-256-cbc'
 
@@ -12,7 +12,7 @@ export const encrypt = (message: Buffer, key = crypto.randomBytes(32)) => {
 }
 
 export const decrypt = (data: string, key: string): Buffer => {
-  const [, iv, message] = data.split(':', 3) as [unknown, string, string]
-  const decipher = crypto.createDecipheriv(algorithm, Buffer.from(key, 'base64'), Buffer.from(iv, 'base64'))
-  return Buffer.concat([decipher.update(message, 'base64'), decipher.final()])
+  const [encoding iv, message] = data.split(':', 3) as [HexBase64BinaryEncoding, string, string]
+  const decipher = crypto.createDecipheriv(algorithm, Buffer.from(key, 'base64'), Buffer.from(iv, encoding))
+  return Buffer.concat([decipher.update(message, encoding), decipher.final()])
 }
