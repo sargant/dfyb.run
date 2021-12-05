@@ -9,7 +9,7 @@ const HeaderLink: React.FC<{ path: string }> = ({ children, path }) => {
     "text-xl text-center",
     "font-header",
     "cursor-pointer",
-    "px-16 py-4",
+    "p-4",
     "bg-white bg-opacity-0 hover:bg-opacity-10",
     pathname === path && "underline text-secondary"
   ].join(' ')
