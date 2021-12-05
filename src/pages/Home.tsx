@@ -40,7 +40,7 @@ export const Home: React.FC = () => (
         It's open source, and you can <Link href="https://github.com/sargant/dfyb.run">find it on Github</Link>!
       </Paragraph>
       <Paragraph>
-        If you'd like to give me any feedback, you can find me at <Link href="https://twitter.com/dfyb_rub">@dfyb_run</Link> or <Link href="https://twitter.com/sargant">@sargant</Link> on Twitter.
+        If you'd like to give me any feedback, you can find me at <Link href="https://twitter.com/dfyb_run">@dfyb_run</Link> or <Link href="https://twitter.com/sargant">@sargant</Link> on Twitter.
       </Paragraph>
       <Paragraph>
         If you'd like to tip a little something to cover the costs of developing this, please go to <Link href="https://ko-fi.com/sargant">ko-fi.com/sargant</Link> 🙂
