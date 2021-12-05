@@ -47,7 +47,7 @@ const BarcodeForm: React.FC = () => {
     }
 
     setPassUrl(qs.stringifyUrl({
-      url: `${window.location.origin}api/generate`,
+      url: `${window.location.origin}/api/generate`,
       query
     }))
 
