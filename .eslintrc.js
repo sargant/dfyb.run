@@ -8,9 +8,6 @@ module.exports = {
     sourceType: 'module',
     project: './tsconfig.json'
   },
-  ignorePatterns: [
-    '.eslintrc.js'
-  ],
   settings: {
     react: {
       version: 'detect'
