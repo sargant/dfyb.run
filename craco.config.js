@@ -1,4 +1,4 @@
-import WindiCSSWebpackPlugin from 'windicss-webpack-plugin'
+const WindiCSSWebpackPlugin = require('windicss-webpack-plugin')
 
 export const webpack = {
   plugins: {
