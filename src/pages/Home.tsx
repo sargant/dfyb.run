@@ -1,7 +1,5 @@
-import React from 'react';
-import BarcodeForm from './BarcodeForm'
-
 import { Link, Heading, Paragraph } from 'src/components'
+import BarcodeForm from 'src/pages/BarcodeForm'
 
 export const Home: React.FC = () => (
   <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 md:gap-x-24 md:p-8">
@@ -37,10 +35,10 @@ export const Home: React.FC = () => (
       </Heading>
       <Paragraph>
         This tool was made by Robert Sargant (<Link href="https://www.parkrun.org.uk/parkrunner/208864/all/">A208864</Link>) in order to scratch a personal itch.
-        It's open source, and you can <Link href="https://github.com/sargant/dfyb.run">find it on Github</Link>!
+        It&apos;s open source, and you can <Link href="https://github.com/sargant/dfyb.run">find it on Github</Link>!
       </Paragraph>
       <Paragraph>
-        If you'd like to give me any feedback, you can find me at <Link href="https://twitter.com/dfyb_rub">@dfyb_run</Link> or <Link href="https://twitter.com/sargant">@sargant</Link> on Twitter.
+        If you&apos;d like to give me any feedback, you can find me at <Link href="https://twitter.com/dfyb_rub">@dfyb_run</Link> or <Link href="https://twitter.com/sargant">@sargant</Link> on Twitter.
       </Paragraph>
       <Paragraph>
         If you'd like to tip a little something to cover the costs of developing this, please go to <Link href="https://ko-fi.com/sargant">ko-fi.com/sargant</Link> 🙂
@@ -50,4 +48,4 @@ export const Home: React.FC = () => (
       <BarcodeForm />
     </div>
   </div>
-);
+)

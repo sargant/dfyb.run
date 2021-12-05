@@ -22,10 +22,6 @@
     "strict": true,
     "jsx": "react-jsx"
   },
-  "include": [
-    "api",
-    "certs",
-    "src",
-    "utils"
-  ]
+  "include": ["./**/*"],
+  "exclude": ["node_modules"]
 }
