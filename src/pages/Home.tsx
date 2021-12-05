@@ -41,7 +41,7 @@ export const Home: React.FC = () => (
         If you&apos;d like to give me any feedback, you can find me at <Link href="https://twitter.com/dfyb_rub">@dfyb_run</Link> or <Link href="https://twitter.com/sargant">@sargant</Link> on Twitter.
       </Paragraph>
       <Paragraph>
-        If you'd like to tip a little something to cover the costs of developing this, please go to <Link href="https://ko-fi.com/sargant">ko-fi.com/sargant</Link> 🙂
+        If you&apos;d like to tip a little something to cover the costs of developing this, please go to <Link href="https://ko-fi.com/sargant">ko-fi.com/sargant</Link> 🙂
       </Paragraph>
     </div>
     <div>

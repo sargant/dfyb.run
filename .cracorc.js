@@ -5,7 +5,7 @@ module.exports = {
     plugins: {
       add: [
         new WindiCSSWebpackPlugin({
-          virtualModulePath: 'src',
+          virtualModulePath: 'src'
         })
       ]
     }
