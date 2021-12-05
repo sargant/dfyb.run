@@ -1,7 +1,7 @@
 const WindiCSSWebpackPlugin = require('windicss-webpack-plugin')
 
 module.exports = {
-  webpack = {
+  webpack: {
     plugins: {
       add: [
         new WindiCSSWebpackPlugin({
