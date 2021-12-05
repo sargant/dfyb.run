@@ -22,6 +22,6 @@
     "strict": true,
     "jsx": "react-jsx"
   },
-  "include": ["./**/*"],
-  "exclude": ["node_modules"]
+  "include": ["./*", "./**/*"],
+  "exclude": ["./node_modules"]
 }

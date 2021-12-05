@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import ReactDOM from 'react-dom'
 import ReactGA from 'react-ga'
 import { BrowserRouter } from 'react-router-dom'
@@ -18,4 +18,4 @@ ReactDOM.render(
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
-);
+)

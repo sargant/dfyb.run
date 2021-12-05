@@ -1,21 +1,21 @@
-import React, { useCallback, useEffect, useState } from "react"
-import QRCode from "react-qr-code"
+import React, { useCallback, useEffect, useState } from 'react'
+import QRCode from 'react-qr-code'
 import qs from 'query-string'
 import { Tooltip } from 'react-tippy'
 
-import useInput from "src/useInput"
-import useInputCheckbox from "src/useInputCheckbox"
+import useInput from 'src/useInput'
+import useInputCheckbox from 'src/useInputCheckbox'
 
-const textInputClasses = "w-full border-0 border-b border-primary dark:border-secondary focus:border-primary dark:focus:border-secondary px-2 mt-1 bg-transparent shadow-none focus:bg-white dark:focus:bg-gray-600 text-black placeholder-black placeholder-opacity-50 dark:placeholder-opacity-50 dark:text-gray-300 dark:placeholder-gray-300 font-sans"
+const textInputClasses = 'w-full border-0 border-b border-primary dark:border-secondary focus:border-primary dark:focus:border-secondary px-2 mt-1 bg-transparent shadow-none focus:bg-white dark:focus:bg-gray-600 text-black placeholder-black placeholder-opacity-50 dark:placeholder-opacity-50 dark:text-gray-300 dark:placeholder-gray-300 font-sans'
 
 const Label: React.FC<React.LabelHTMLAttributes<HTMLLabelElement>> = ({ children, className }) => (
-  <label className={`block font-bold text-base pb-8 lg:pb-0 ${className}`}>
+  <label className={`block font-bold text-base pb-8 lg:pb-0 ${className ?? ''}`}>
     {children}
   </label>
 )
 
-const Button: React.FC<Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, 'disabled' | 'children' | 'onClick' | 'className'>> = ({ children,  className, ...rest  }) => (
-  <button {...rest} className={`font-bold text-white bg-primary dark:bg-secondary dark:text-primary disabled:opacity-25 p-4 rounded-lg lg:col-span-2 w-full whitespace-nowrap ${className}`}>
+const Button: React.FC<Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, 'disabled' | 'children' | 'onClick' | 'className'>> = ({ children, className, ...rest }) => (
+  <button {...rest} className={`font-bold text-white bg-primary dark:bg-secondary dark:text-primary disabled:opacity-25 p-4 rounded-lg lg:col-span-2 w-full whitespace-nowrap ${className ?? ''}`}>
     {children}
   </button>
 )
@@ -25,7 +25,7 @@ const BarcodeForm: React.FC = () => {
   const athleteIdInput = useInput('', { transform: v => v.toUpperCase(), validate: val => /^$|^A[1-9]?$|^A[1-9][0-9]{0,8}$/.test(val) })
   const iceContactNameInput = useInput('')
   const iceContactNumberInput = useInput('')
-  const medicalInfoInput = useInput("None")
+  const medicalInfoInput = useInput('None')
   const useQrCodeInput = useInputCheckbox(true)
 
   const [submitEnabled, setSubmitEnabled] = useState(false)
@@ -52,13 +52,12 @@ const BarcodeForm: React.FC = () => {
     }))
 
     setShowResult(true)
-  
   }, [
     submitEnabled,
     setShowResult,
     athleteNameInput.value,
     athleteIdInput.value,
-    iceContactNameInput.value, 
+    iceContactNameInput.value,
     iceContactNumberInput.value,
     medicalInfoInput.value,
     useQrCodeInput.checked
@@ -157,7 +156,7 @@ const BarcodeForm: React.FC = () => {
             <QRCode value={passUrl} size={128} />
           </div>
           <p className="xl:mx-32 text-center mt-8 mb-4">
-            If you're on your iPhone, click the button below to add the pass directly to Apple Wallet
+            If you&apos;re on your iPhone, click the button below to add the pass directly to Apple Wallet
           </p>
           <a href={passUrl}>
             <img src="/add-to-apple-wallet.svg" className="h-16" alt="Add to Apple Wallet" />

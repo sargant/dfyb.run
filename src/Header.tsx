@@ -1,17 +1,17 @@
-import { Link , useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 const HeaderLink: React.FC<{ path: string }> = ({ children, path }) => {
   const { pathname } = useLocation()
 
   const classNames = [
-    "block",
-    "w-1/3",
-    "text-xl text-center",
-    "font-header",
-    "cursor-pointer",
-    "p-4",
-    "bg-white bg-opacity-0 hover:bg-opacity-10",
-    pathname === path && "underline text-secondary"
+    'block',
+    'w-1/3',
+    'text-xl text-center',
+    'font-header',
+    'cursor-pointer',
+    'p-4',
+    'bg-white bg-opacity-0 hover:bg-opacity-10',
+    pathname === path && 'underline text-secondary'
   ].join(' ')
 
   return (

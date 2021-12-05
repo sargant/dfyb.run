@@ -1,13 +1,11 @@
-const WindiCSSWebpackPlugin = require('windicss-webpack-plugin')
+import WindiCSSWebpackPlugin from 'windicss-webpack-plugin'
 
-module.exports = {
-  webpack: {
-    plugins: {
-      add: [
-        new WindiCSSWebpackPlugin({
-          virtualModulePath: 'src',
-        })
-      ]
-    }
+export const webpack = {
+  plugins: {
+    add: [
+      new WindiCSSWebpackPlugin({
+        virtualModulePath: 'src'
+      })
+    ]
   }
 }
