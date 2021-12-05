@@ -5,6 +5,7 @@ const HeaderLink: React.FC<{ path: string }> = ({ children, path }) => {
 
   const classNames = [
     "block",
+    "w-1/3",
     "text-xl text-center",
     "font-header",
     "cursor-pointer",
@@ -35,16 +36,18 @@ const Header: React.FC = () => (
         Feedback? Comments?  📧 <a href="mailto:hello@dfyb.run" className="whitespace-nowrap underline">hello@dfyb.run</a> or tweet me at <a href="https://twitter.com/dfyb_run" className="whitespace-nowrap underline">@dfyb_run</a>
       </p>
     </div>
-    <div className="bg-white bg-opacity-10 flex flex-col sm:flex-row justify-center align-middle">
-      <HeaderLink path="/">
-        Home
-      </HeaderLink>
-      <HeaderLink path="/faq">
-        FAQ
-      </HeaderLink>
-      <HeaderLink path="/privacy">
-        Privacy
-      </HeaderLink>
+    <div className="bg-white/10">
+      <div className="flex flex-row justify-center align-middle max-w-screen-sm mx-auto">
+        <HeaderLink path="/">
+          Home
+        </HeaderLink>
+        <HeaderLink path="/faq">
+          FAQ
+        </HeaderLink>
+        <HeaderLink path="/privacy">
+          Privacy
+        </HeaderLink>
+      </div>
     </div>
   </div>
 )
