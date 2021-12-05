@@ -6,7 +6,7 @@
     "start": "vercel dev",
     "dev": "craco start",
     "build": "craco build",
-    "lint": "tsc && eslint --ext .js,.jsx,.ts,.tsx api certs src utils",
+    "lint": "tsc && eslint . --ext .js,.jsx,.ts,.tsx",
     "test": "craco test",
     "encrypt-certs": "ts-node certs/encrypt-certs.ts"
   },
