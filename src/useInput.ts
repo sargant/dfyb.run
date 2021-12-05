@@ -5,10 +5,8 @@ interface Options {
   validate?: (value: string) => boolean
 }
 
-const useInput = (initialValue: string = '', opts: Options = {}) => {
-
+const useInput = (initialValue = '', opts: Options = {}) => {
   const [value, setValue] = useState(initialValue)
-
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     let shouldUpdate = true
     const newValue = opts.transform?.(event.target.value) ?? event.target.value
@@ -19,7 +17,6 @@ const useInput = (initialValue: string = '', opts: Options = {}) => {
       setValue(newValue)
     }
   }
-
   return { value, onChange }
 }
 

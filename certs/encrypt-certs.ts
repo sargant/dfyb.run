@@ -1,7 +1,7 @@
-const { randomBytes } = require("crypto")
-const { readFileSync, writeFileSync } = require("fs");
-const { join } = require("path");
-const { encrypt } = require('../utils/encryption')
+import { randomBytes } from 'crypto'
+import { readFileSync, writeFileSync } from 'fs'
+import { join } from 'path'
+import { encrypt } from '../utils/encryption'
 
 const certPaths = {
   wwdr: 'wwdr.pem',
@@ -11,7 +11,7 @@ const certPaths = {
 
 const key = randomBytes(32)
 
-const encodedCerts = {}
+const encodedCerts: Record<string, string> = {}
 
 for (const [name, path] of Object.entries(certPaths)) {
   const fileContents = readFileSync(join(__dirname, path))
@@ -22,4 +22,4 @@ writeFileSync(join(__dirname, '..', 'certs.enc.json'), JSON.stringify(encodedCer
 
 console.log('Successfully encrypted to ../certs.enc.json')
 console.log('The following encryption key will only be shown once - make sure to copy it')
-console.log("Key: " + key.toString('base64'))
+console.log('Key: ' + key.toString('base64'))
