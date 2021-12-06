@@ -1,24 +1,25 @@
 {
   "name": "dfyb.run",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "start": "vercel dev",
-    "dev": "craco start",
-    "build": "craco build",
-    "lint": "tsc && eslint . --ext .js,.jsx,.ts,.tsx",
-    "test": "craco test",
+    "dev": "vite --host",
+    "check": "tsc && npm run lint",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "build": "tsc && vite build",
+    "serve": "vite preview",
     "encrypt-certs": "ts-node certs/encrypt-certs.ts"
   },
   "dependencies": {
-    "@craco/craco": "^6.4.2",
-    "@types/node": "^12.20.37",
-    "@types/react": "^17.0.37",
+    "@types/node": "^16.11.11",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^5.5.0",
     "@typescript-eslint/parser": "^5.5.0",
-    "@types/react-dom": "^17.0.11",
     "@vercel/node": "^1.12.1",
-    "eslint": "^7.32.0",
+    "@vitejs/plugin-react": "^1.0.0",
+    "eslint": "^8.4.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-node": "^11.1.0",
@@ -26,31 +27,17 @@
     "eslint-plugin-react": "^7.27.1",
     "passkit-generator": "^3.0.1",
     "query-string": "^7.0.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
     "react-ga": "^3.3.0",
     "react-qr-code": "^2.0.3",
     "react-router-dom": "^6.0.2",
-    "react-scripts": "4.0.3",
     "react-tippy": "^1.4.0",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.2",
     "vercel": "^23.1.2",
-    "windicss": "^3.2.1",
-    "windicss-webpack-plugin": "^1.5.8"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
+    "vite": "^2.6.4",
+    "vite-plugin-windicss": "^1.5.4",
+    "windicss": "^3.2.1"
   }
 }

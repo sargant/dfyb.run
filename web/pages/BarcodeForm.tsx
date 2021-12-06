@@ -3,8 +3,8 @@ import QRCode from 'react-qr-code'
 import qs from 'query-string'
 import { Tooltip } from 'react-tippy'
 
-import useInput from 'src/useInput'
-import useInputCheckbox from 'src/useInputCheckbox'
+import useInput from '@/web/useInput'
+import useInputCheckbox from '@/web/useInputCheckbox'
 
 const textInputClasses = 'w-full border-0 border-b border-primary dark:border-secondary focus:border-primary dark:focus:border-secondary px-2 mt-1 bg-transparent shadow-none focus:bg-white dark:focus:bg-gray-600 text-black placeholder-black placeholder-opacity-50 dark:placeholder-opacity-50 dark:text-gray-300 dark:placeholder-gray-300 font-sans'
 
