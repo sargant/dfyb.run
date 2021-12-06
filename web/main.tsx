@@ -5,9 +5,9 @@ import { BrowserRouter } from 'react-router-dom'
 
 import 'react-tippy/dist/tippy.css'
 import './fonts.css'
-import './virtual:windi.css'
+import 'virtual:windi.css'
 
-import App from 'src/App'
+import App from '@/web/App'
 
 ReactGA.initialize('G-C7G808C31D')
 

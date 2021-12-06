@@ -1,4 +1,4 @@
-import { Link, Paragraph } from 'src/components'
+import { Link, Paragraph } from '@/web/components'
 
 export const Privacy: React.FC = () => (
   <div className="container mx-auto max-w-screen-sm p-8">
@@ -6,7 +6,7 @@ export const Privacy: React.FC = () => (
       As part of generating your pass, this service asks you to
       input <em>personally identifiable information</em> (PII), such as your name,
       medical conditions, and emergency contact details. Only your athlete ID is required —
-      all other fields are optional (your name will show as &qout;Unknown&quot; if left blank).
+      all other fields are optional (your name will show as &quot;Unknown&quot; if left blank).
     </Paragraph>
     <Paragraph>
       Your generated pass is immediately downloaded to and stored locally on your devices underline

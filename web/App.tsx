@@ -1,8 +1,8 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 
-import * as Pages from 'src/pages'
-import Header from 'src/Header'
+import * as Pages from '@/web/pages'
+import Header from '@/web/Header'
 
 const App: React.FC = () => (
   <>
