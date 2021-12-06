@@ -2,8 +2,7 @@ import { VercelRequest, VercelRequestQuery, VercelResponse } from '@vercel/node'
 import { PKPass } from 'passkit-generator'
 import { join } from 'path'
 
-import { decrypt } from '../utils/encryption'
-
+import { decrypt } from '../lib/encryption'
 import encryptedCerts from '../certs.enc.json'
 
 export const sanitizeVercelQuery = (query: VercelRequestQuery): Record<string, string> =>
@@ -27,6 +26,9 @@ interface BarcodeOptions {
 }
 
 const generateBarcode = async (opt: BarcodeOptions) => {
+  const secretsKey = process.env.SECRETS_KEY ??
+    (() => { throw Error('SECRETS_KEY environment variable missing') })()
+
   if (!opt.athleteId) {
     throw new Error('No athlete ID provided')
   }
@@ -44,11 +46,11 @@ const generateBarcode = async (opt: BarcodeOptions) => {
   })}`)
 
   const pass = await PKPass.from({
-    model: join(__dirname, '..', 'pass-models', 'dfyb.run.pass'),
+    model: join(__dirname, 'dfyb.run.pass'),
     certificates: {
-      signerCert: decrypt(encryptedCerts.signerCert, process.env.SECRETS_KEY ?? ''),
-      signerKey: decrypt(encryptedCerts.signerKey, process.env.SECRETS_KEY ?? ''),
-      wwdr: decrypt(encryptedCerts.wwdr, process.env.SECRETS_KEY ?? '')
+      signerCert: decrypt(encryptedCerts.signerCert, secretsKey),
+      signerKey: decrypt(encryptedCerts.signerKey, secretsKey),
+      wwdr: decrypt(encryptedCerts.wwdr, secretsKey)
     }
   }, {
     serialNumber: `${sanitizedAthleteId}-${opt.useQrCode ? 'qr' : 'c128'}`

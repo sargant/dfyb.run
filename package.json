@@ -9,7 +9,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "build": "tsc && vite build",
     "serve": "vite preview",
-    "encrypt-certs": "ts-node certs/encrypt-certs.ts"
+    "encrypt-certs": "ts-node tools/encrypt-certs.ts"
   },
   "dependencies": {
     "@types/node": "^16.11.11",

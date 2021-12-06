@@ -1,7 +1,8 @@
 import { randomBytes } from 'crypto'
 import { readFileSync, writeFileSync } from 'fs'
 import { join } from 'path'
-import { encrypt } from '../utils/encryption'
+
+import { encrypt } from '@/lib/encryption'
 
 const certPaths = {
   wwdr: 'wwdr.pem',
