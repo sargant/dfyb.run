@@ -21,7 +21,7 @@
       "@/*": ["./*"]
     },
     "resolveJsonModule": true,
-    "skipLibCheck": false,
+    "skipLibCheck": true,
     "strict": true,
     "useDefineForClassFields": true,
   },
