@@ -25,6 +25,6 @@
     "strict": true,
     "useDefineForClassFields": true,
   },
-  "include": ["./**/*"],
+  "include": ["./**/*", ".eslintrc.js"],
   "exclude": ["node_modules"]
 }
