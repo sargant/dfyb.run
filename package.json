@@ -33,7 +33,7 @@
     "react-router-dom": "^6.0.2",
     "react-tippy": "^1.4.0",
     "ts-node": "^10.4.0",
-    "typescript": "^4.3.2",
+    "typescript": "^4.5.2",
     "vercel": "^23.1.2",
     "vite": "^2.6.4",
     "vite-plugin-windicss": "^1.5.4",
