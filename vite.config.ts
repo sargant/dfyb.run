@@ -7,6 +7,6 @@ export default defineConfig({
   publicDir: './assets',
   plugins: [WindiCSS(), react()],
   resolve: {
-    alias: [{ find: '@', replacement: __dirname }],
+    alias: [{ find: '@', replacement: __dirname }]
   }
 })
