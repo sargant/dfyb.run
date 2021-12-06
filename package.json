@@ -7,7 +7,7 @@
     "dev": "vite --host",
     "check": "tsc && npm run lint",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "build": "npm run check && vite build",
+    "build": "tsc && vite build",
     "serve": "vite preview"
   },
   "dependencies": {
