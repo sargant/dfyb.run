@@ -7,7 +7,7 @@ import 'react-tippy/dist/tippy.css'
 import './fonts.css'
 import 'virtual:windi.css'
 
-import App from '@/web/App'
+import App from './App'
 
 ReactGA.initialize('G-C7G808C31D')
 

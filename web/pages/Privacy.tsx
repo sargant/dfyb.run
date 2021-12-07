@@ -1,4 +1,4 @@
-import { Link, Paragraph } from '@/web/components'
+import { Link, Paragraph } from '../components'
 
 export const Privacy: React.FC = () => (
   <div className="container mx-auto max-w-screen-sm p-8">

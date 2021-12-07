@@ -17,14 +17,10 @@
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
-    "paths": {
-      "@/*": ["./*"]
-    },
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
     "useDefineForClassFields": true,
   },
-  "include": ["./**/*", ".eslintrc.js"],
-  "exclude": ["node_modules"]
+  "include": ["./**/*", ".*"]
 }

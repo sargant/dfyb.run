@@ -1,5 +1,5 @@
-import { Link, Heading, Paragraph } from '@/web/components'
-import BarcodeForm from '@/web/pages/BarcodeForm'
+import { Link, Heading, Paragraph } from '../components'
+import BarcodeForm from './BarcodeForm'
 
 export const Home: React.FC = () => (
   <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 md:gap-x-24 md:p-8">
