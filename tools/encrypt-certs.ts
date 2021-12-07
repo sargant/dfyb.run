@@ -1,25 +1,24 @@
-import { randomBytes } from 'crypto'
 import { readFileSync, writeFileSync } from 'fs'
 import { join } from 'path'
 import { encrypt } from '../lib/encryption'
 
-const certPaths = {
-  wwdr: 'wwdr.pem',
-  signerKey: 'pass.run.dfyb.key',
-  signerCert: 'signerCert.pem'
-}
+let output = ''
 
-const key = randomBytes(32)
+const wwdr = readFileSync(join(__dirname, 'wwdr.pem'))
+const wwdrEncrypted = encrypt(wwdr)
+const key = wwdrEncrypted.key
+output += `export const wwdr = '${wwdrEncrypted.data}'\n`
 
-const encodedCerts: Record<string, string> = {}
+const signerCert = readFileSync(join(__dirname, 'signerCert.pem'))
+const signerCertEncrypted = encrypt(signerCert, key)
+output += `export const signerCert = '${signerCertEncrypted.data}'\n`
 
-for (const [name, path] of Object.entries(certPaths)) {
-  const fileContents = readFileSync(join(__dirname, path))
-  encodedCerts[name] = encrypt(fileContents, key).data
-}
+const signerKey = readFileSync(join(__dirname, 'pass.run.dfyb.key'))
+const signerKeyEncrypted = encrypt(signerKey, key)
+output += `export const signerKey = '${signerKeyEncrypted.data}'\n`
 
-writeFileSync(join(__dirname, '..', 'pass-models', 'certs.enc.json'), JSON.stringify(encodedCerts, null, 2))
+writeFileSync(join(__dirname, '..', 'api', 'certs.enc.js'), output)
 
 console.log('Successfully encrypted to /pass-models/certs.enc.json')
 console.log('The following encryption key will only be shown once - make sure to copy it')
-console.log('Key: ' + key.toString('base64'))
+console.log(`Key: ${key.toString('base64')}`)
