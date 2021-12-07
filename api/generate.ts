@@ -3,8 +3,7 @@ import { PKPass } from 'passkit-generator'
 import { join } from 'path'
 
 import { decrypt } from '../lib/encryption'
-
-import encryptedCerts from './certs.enc.json'
+import encryptedCerts from '../pass-models/certs.enc.json'
 
 export const sanitizeVercelQuery = (query: VercelRequestQuery): Record<string, string> =>
   Object.entries(query).reduce(
