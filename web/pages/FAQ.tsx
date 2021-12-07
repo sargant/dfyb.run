@@ -30,11 +30,12 @@ export const FAQ: React.FC = () => (
       Do I still need a physical barcode?
     </Heading>
     <Paragraph>
-      <strong>Yes.</strong> This tool is still in beta - and you shouldn&apos;t trust it as your only barcode.
+      It&apos;s a good idea. What if your device runs out of battery?
     </Paragraph>
     <Paragraph>
-      Additionally, it is <strong>strongly</strong> advised that you carry your physical barcode for its emergency contact information.
-      Adding your barcode to your Apple Wallet is designed just as a convenience!
+      parkrun HQ strongly advises that you carry your physical barcode for its emergency contact information, but <strong>most importantly</strong>,
+      you should set up <Link className="font-bold" href="https://support.apple.com/en-gb/HT207021">Medical ID</Link> on your iPhone, as this is
+      the first place someone not familiar with parkrun would check in an emergency.
     </Paragraph>
     <Heading>
       Why is my barcode now a QR code?
