@@ -2,20 +2,19 @@ import { Link, useLocation } from 'react-router-dom'
 
 const HeaderLink: React.FC<{ path: string }> = ({ children, path }) => {
   const { pathname } = useLocation()
-
-  const classNames = [
-    'block',
-    'w-1/3',
-    'text-xl text-center',
-    'font-header',
-    'cursor-pointer',
-    'p-4',
-    'bg-white bg-opacity-0 hover:bg-opacity-10',
-    pathname === path && 'underline text-secondary'
-  ].join(' ')
-
   return (
-    <Link to={path} className={classNames}>
+    <Link
+      to={path}
+      className={`
+        block
+        w-1/3
+        text-xl text-center
+        font-header
+        cursor-pointer
+        p-4
+        bg-white/0 hover:bg-opacity-10
+        border-b-4 ${pathname === path ? 'text-secondary border-secondary' : 'border-transparent'}
+      `}>
       {children}
     </Link>
   )
@@ -24,10 +23,12 @@ const HeaderLink: React.FC<{ path: string }> = ({ children, path }) => {
 const Header: React.FC = () => (
   <div className="bg-primary text-white">
     <div className="flex flex-col justify-center items-center text-center p-8 sm:px-32">
-      <img src="/logo.svg" alt="dfyb.run logo" className="w-16 md:w-24" />
-      <h1 className="text-4xl md:text-6xl font-header">
-        dfyb.run <span className="text-secondary">beta</span>
-      </h1>
+      <div className="flex flex-row justify-center text-center items-center">
+        <img src="/logo.svg" alt="dfyb.run logo" className="w-16 md:w-24" />
+        <h1 className="text-4xl md:text-6xl font-header ml-4">
+          <span className="text-secondary">dfyb</span>.run
+        </h1>
+      </div>
       <p className="mt-6">
         Add your barcodes for a certain 5K and 2K <span className="whitespace-nowrap">run 🏃💨</span> to
         your <span className="whitespace-nowrap">iPhone 📱</span> and <span className="whitespace-nowrap">Apple Watch ⌚</span>
