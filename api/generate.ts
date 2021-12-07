@@ -1,9 +1,11 @@
 import { VercelRequest, VercelRequestQuery, VercelResponse } from '@vercel/node'
+import { readFileSync } from 'fs'
 import { PKPass } from 'passkit-generator'
 import { join } from 'path'
 
 import { decrypt } from '../lib/encryption'
-import encryptedCerts from '../pass-models/certs.enc.json'
+
+const passFolder = join(__dirname, '..', 'pass-models')
 
 export const sanitizeVercelQuery = (query: VercelRequestQuery): Record<string, string> =>
   Object.entries(query).reduce(
@@ -42,12 +44,15 @@ const generateBarcode = async (opt: BarcodeOptions) => {
     sanitizedAthleteName
   })}`)
 
+  const certsFile = readFileSync(join(passFolder, 'certs.enc.json'))
+  const encryptedCerts = JSON.parse(certsFile.toString()) as Record<string, string>
+
   const pass = await PKPass.from({
-    model: join(__dirname, '..', 'pass-models', 'dfyb.run.pass'),
+    model: join(passFolder, 'dfyb.run.pass'),
     certificates: {
-      signerCert: decrypt({ data: encryptedCerts.signerCert, key: process.env.SECRETS_KEY ?? '' }),
-      signerKey: decrypt({ data: encryptedCerts.signerKey, key: process.env.SECRETS_KEY ?? '' }),
-      wwdr: decrypt({ data: encryptedCerts.wwdr, key: process.env.SECRETS_KEY ?? '' })
+      signerCert: decrypt({ data: encryptedCerts.signerCert ?? '', key: process.env.SECRETS_KEY ?? '' }),
+      signerKey: decrypt({ data: encryptedCerts.signerKey ?? '', key: process.env.SECRETS_KEY ?? '' }),
+      wwdr: decrypt({ data: encryptedCerts.wwdr ?? '', key: process.env.SECRETS_KEY ?? '' })
     }
   }, {
     serialNumber: `${sanitizedAthleteId}-${opt.useQrCode ? 'qr' : 'c128'}`
