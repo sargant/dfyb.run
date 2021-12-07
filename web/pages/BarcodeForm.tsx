@@ -1,10 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useReducer, useState } from 'react'
 import QRCode from 'react-qr-code'
 import qs from 'query-string'
 import { Tooltip } from 'react-tippy'
-
-import useInput from '../useInput'
-import useInputCheckbox from '../useInputCheckbox'
 
 const textInputClasses = 'w-full border-0 border-b border-primary dark:border-secondary focus:border-primary dark:focus:border-secondary px-2 mt-1 bg-transparent shadow-none focus:bg-white dark:focus:bg-gray-600 text-black placeholder-black placeholder-opacity-50 dark:placeholder-opacity-50 dark:text-gray-300 dark:placeholder-gray-300 font-sans'
 
@@ -20,14 +17,32 @@ const Button: React.FC<Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, 'disa
   </button>
 )
 
-const BarcodeForm: React.FC = () => {
-  const athleteNameInput = useInput('')
-  const athleteIdInput = useInput('', { transform: v => v.toUpperCase(), validate: val => /^$|^A[1-9]?$|^A[1-9][0-9]{0,8}$/.test(val) })
-  const iceContactNameInput = useInput('')
-  const iceContactNumberInput = useInput('')
-  const medicalInfoInput = useInput('None')
-  const useQrCodeInput = useInputCheckbox(true)
+const formInitialValues = {
+  athleteName: '',
+  athleteId: '',
+  iceContactName: '',
+  iceContactNumber: '',
+  medicalInfo: 'None',
+  useQrCode: 'yes'
+}
 
+const formReducer = (values: typeof formInitialValues, update: [string, string]) => {
+  const [name, newValue] = update
+  switch (name) {
+    case 'athleteId': {
+      const transformedVal = newValue.toUpperCase()
+      return /^$|^A[1-9]?$|^A[1-9][0-9]{0,8}$/.test(transformedVal)
+        ? { ...values, athleteId: transformedVal }
+        : values
+    }
+    default: {
+      return { ...values, [name]: newValue }
+    }
+  }
+}
+
+const BarcodeForm: React.FC = () => {
+  const [formValues, dispatch] = useReducer(formReducer, formInitialValues)
   const [submitEnabled, setSubmitEnabled] = useState(false)
   const [showResult, setShowResult] = useState(false)
   const [passUrl, setPassUrl] = useState('')
@@ -37,39 +52,36 @@ const BarcodeForm: React.FC = () => {
       return
     }
 
-    const query = {
-      athleteId: athleteIdInput.value,
-      athleteName: athleteNameInput.value,
-      iceContactName: iceContactNameInput.value,
-      iceContactNumber: iceContactNumberInput.value,
-      medicalInfo: medicalInfoInput.value,
-      useQrCode: useQrCodeInput.checked ? 'yes' : ''
-    }
-
-    setPassUrl(qs.stringifyUrl({
-      url: `${window.location.origin}/api/generate`,
-      query
-    }))
-
+    const url = `${window.location.origin}/api/generate`
+    setPassUrl(qs.stringifyUrl({ url, query: formValues }))
     setShowResult(true)
   }, [
     submitEnabled,
     setShowResult,
-    athleteNameInput.value,
-    athleteIdInput.value,
-    iceContactNameInput.value,
-    iceContactNumberInput.value,
-    medicalInfoInput.value,
-    useQrCodeInput.checked
+    formValues
   ])
 
   const handleCancelPass = useCallback(() => {
     setShowResult(false)
   }, [setShowResult])
 
+  const registerTextInput = (name: keyof typeof formValues) => ({
+    value: formValues[name],
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+      dispatch([name, event.target.value])
+    }
+  })
+
+  const registerCheckboxInput = (name: keyof typeof formValues) => ({
+    checked: formValues[name] === 'yes',
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+      dispatch([name, event.target.checked ? 'yes' : ''])
+    }
+  })
+
   useEffect(() => {
-    setSubmitEnabled(athleteIdInput.value.length > 1)
-  }, [setSubmitEnabled, athleteIdInput.value])
+    setSubmitEnabled(formValues.athleteId.length > 1)
+  }, [setSubmitEnabled, formValues.athleteId])
 
   return (
     <div className="bg-gray-200 dark:bg-gray-700 p-8 sm:rounded-lg">
@@ -85,7 +97,7 @@ const BarcodeForm: React.FC = () => {
                 type="text"
                 placeholder="e.g. A208864"
                 className={textInputClasses}
-                {...athleteIdInput}
+                {...registerTextInput('athleteId')}
               />
             </Label>
             <Label>
@@ -93,7 +105,7 @@ const BarcodeForm: React.FC = () => {
               <input
                 type="text"
                 className={textInputClasses}
-                {...athleteNameInput}
+                {...registerTextInput('athleteName')}
               />
             </Label>
             <Label>
@@ -101,7 +113,7 @@ const BarcodeForm: React.FC = () => {
               <input
                 type="text"
                 className={textInputClasses}
-                {...iceContactNameInput}
+                {...registerTextInput('iceContactName')}
               />
             </Label>
             <Label>
@@ -109,7 +121,7 @@ const BarcodeForm: React.FC = () => {
               <input
                 type="text"
                 className={textInputClasses}
-                {...iceContactNumberInput}
+                {...registerTextInput('iceContactNumber')}
               />
             </Label>
             <Label className="md:col-span-2">
@@ -117,11 +129,15 @@ const BarcodeForm: React.FC = () => {
               <input
                 type="text"
                 className={textInputClasses}
-                {...medicalInfoInput}
+                {...registerTextInput('medicalInfo')}
               />
             </Label>
             <div className="text-base pb-8 lg:pb-0 md:col-span-2 flex flex-row items-center">
-              <input type="checkbox" {...useQrCodeInput} className="w-6 h-6 rounded bg-primary dark:text-gray-500 dark:bg-gray-500 shadow-none border-0 outline-none text-primary dark:text-gray-500 mr-4" />
+              <input
+                type="checkbox"
+                className="w-6 h-6 rounded bg-primary dark:text-gray-500 dark:bg-gray-500 shadow-none border-0 outline-none text-primary dark:text-gray-500 mr-4"
+                {...registerCheckboxInput('useQrCode')}
+              />
               <div className="flex-1 leading-tight">
                 I want to use an Apple Watch<br />
                 <Tooltip
@@ -144,7 +160,7 @@ const BarcodeForm: React.FC = () => {
       {showResult && (
         <div className="flex flex-col items-center">
           <h3 className="text-primary dark:text-secondary font-header font-bold text-center text-2xl mb-4">
-            Pass ready for runner {athleteIdInput.value}!
+            Pass ready for runner {formValues.athleteId}!
           </h3>
           <Button onClick={handleCancelPass}>
             Go back and make changes
