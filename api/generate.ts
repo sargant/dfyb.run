@@ -1,16 +1,9 @@
-import { VercelRequest, VercelRequestQuery, VercelResponse } from '@vercel/node'
 import { RequestListener } from 'http'
 import { PKPass } from 'passkit-generator'
 import { join } from 'path'
 
 import * as certs from './certs.enc.js'
 import { decrypt } from '../lib/encryption'
-
-export const sanitizeVercelQuery = (query: VercelRequestQuery): Record<string, string> =>
-  Object.entries(query).reduce(
-    (result, [key, value]) => ({ ...result, [key]: Array.isArray(value) ? value[0] : value }),
-    {}
-  )
 
 export const sanitizeAthleteId = (athleteId: string) => {
   const trimmedId = athleteId.trim().toUpperCase()
@@ -123,9 +116,17 @@ const generateBarcode = async (opt: BarcodeOptions) => {
   return pass
 }
 
-const listener = async (request: VercelRequest, response: VercelResponse) => {
-  const options = sanitizeVercelQuery(request.query)
-  const pass = await generateBarcode(options)
+const listener: RequestListener = async (request, response) => {
+  const parameters = new URL(request.url ?? '', `https://${request?.headers.host ?? 'example.com'}`).searchParams
+  const pass = await generateBarcode({
+    athleteId: parameters.get('athleteId') ?? undefined,
+    athleteName: parameters.get('athleteName') ?? undefined,
+    iceContactName: parameters.get('iceContactName') ?? undefined,
+    iceContactNumber: parameters.get('iceContactNumber') ?? undefined,
+    medicalInfo: parameters.get('medicalInfo') ?? undefined,
+    useQrCode: parameters.get('useQrCode') ?? undefined
+  })
+
   response.writeHead(200, {
     'Content-Type': 'application/vnd.apple.pkpass'
   }).end(pass.getAsBuffer())
