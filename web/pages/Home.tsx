@@ -14,8 +14,6 @@ export const Home: React.FC = () => (
       <Paragraph>
         In <Link href="https://blog.parkrun.com/uk/2021/11/22/scanning-from-mobile-devices/">November 2021</Link> parkrun HQ
         announced that virtual barcodes were now acceptable at their events, and that a physical barcode was no longer mandatory.
-      </Paragraph>
-      <Paragraph>
         As iPhones and Apple Watches have the <Link href="https://www.apple.com/wallet/">Apple Wallet</Link> feature that make ID passes and barcodes easily accessible,
         it seemed like a great fit!
       </Paragraph>
