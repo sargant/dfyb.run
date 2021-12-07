@@ -19,3 +19,6 @@ jobs:
       run: npm ci
     - name: Run checks
       run: npm run check
+    - name: Run tests
+      run: npm run test
+

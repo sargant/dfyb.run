@@ -1,4 +1,4 @@
-import { Heading, Link, Paragraph } from '@/web/components'
+import { Heading, Link, Paragraph } from '../components'
 
 export const FAQ: React.FC = () => (
   <div className="container mx-auto max-w-screen-sm px-8 pb-8">

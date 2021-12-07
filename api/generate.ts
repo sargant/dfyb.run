@@ -2,7 +2,7 @@ import { VercelRequest, VercelRequestQuery, VercelResponse } from '@vercel/node'
 import { PKPass } from 'passkit-generator'
 import { join } from 'path'
 
-import { decrypt } from '../utils/encryption'
+import { decrypt } from '../lib/encryption'
 
 import encryptedCerts from '../certs.enc.json'
 
@@ -46,9 +46,9 @@ const generateBarcode = async (opt: BarcodeOptions) => {
   const pass = await PKPass.from({
     model: join(__dirname, '..', 'pass-models', 'dfyb.run.pass'),
     certificates: {
-      signerCert: decrypt(encryptedCerts.signerCert, process.env.SECRETS_KEY ?? ''),
-      signerKey: decrypt(encryptedCerts.signerKey, process.env.SECRETS_KEY ?? ''),
-      wwdr: decrypt(encryptedCerts.wwdr, process.env.SECRETS_KEY ?? '')
+      signerCert: decrypt({ data: encryptedCerts.signerCert, key: process.env.SECRETS_KEY ?? '' }),
+      signerKey: decrypt({ data: encryptedCerts.signerKey, key: process.env.SECRETS_KEY ?? '' }),
+      wwdr: decrypt({ data: encryptedCerts.wwdr, key: process.env.SECRETS_KEY ?? '' })
     }
   }, {
     serialNumber: `${sanitizedAthleteId}-${opt.useQrCode ? 'qr' : 'c128'}`
@@ -119,11 +119,7 @@ const generateBarcode = async (opt: BarcodeOptions) => {
 }
 
 export default async (request: VercelRequest, response: VercelResponse) => {
-  try {
-    const pass = await generateBarcode(sanitizeVercelQuery(request.query))
-    response.setHeader('Content-Type', 'application/vnd.apple.pkpass')
-    response.status(200).send(pass.getAsBuffer())
-  } catch (error) {
-    response.status(400).send(JSON.stringify(error))
-  }
+  const pass = await generateBarcode(sanitizeVercelQuery(request.query))
+  response.setHeader('Content-Type', 'application/vnd.apple.pkpass')
+  response.status(200).send(pass.getAsBuffer())
 }
