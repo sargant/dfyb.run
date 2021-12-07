@@ -2,8 +2,15 @@ import { Link, Heading, Paragraph } from '../components'
 import BarcodeForm from './BarcodeForm'
 
 export const Home: React.FC = () => (
-  <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 md:gap-x-24 md:p-8">
-    <div className="p-8 md:p-0">
+  <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 md:gap-x-24">
+    <div className="mx-8">
+      <Heading>
+        What is this?
+      </Heading>
+      <Paragraph>
+        <strong>dfyb.run</strong> is a tool that lets you generate Apple Wallet passes that can be used for
+        scanning at the end of your weekly, organised 5K or 2K run.
+      </Paragraph>
       <Paragraph>
         In <Link href="https://blog.parkrun.com/uk/2021/11/22/scanning-from-mobile-devices/">November 2021</Link> parkrun HQ
         announced that virtual barcodes were now acceptable at their events, and that a physical barcode was no longer mandatory.

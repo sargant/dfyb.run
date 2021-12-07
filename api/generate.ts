@@ -128,7 +128,8 @@ const listener: RequestListener = async (request, response) => {
   })
 
   response.writeHead(200, {
-    'Content-Type': 'application/vnd.apple.pkpass'
+    'Content-Type': 'application/vnd.apple.pkpass',
+    'Content-Disposition': 'attachment; filename="barcode.pkpass"'
   }).end(pass.getAsBuffer())
 }
 
