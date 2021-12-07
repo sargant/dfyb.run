@@ -1,7 +1,10 @@
-import { Link, Paragraph } from '../components'
+import { Heading, Link, Paragraph } from '../components'
 
 export const Privacy: React.FC = () => (
-  <div className="container mx-auto max-w-screen-sm p-8">
+  <div className="container mx-auto max-w-screen-sm px-8">
+    <Heading>
+      Your privacy
+    </Heading>
     <Paragraph>
       As part of generating your pass, this service asks you to
       input <em>personally identifiable information</em> (PII), such as your name,
