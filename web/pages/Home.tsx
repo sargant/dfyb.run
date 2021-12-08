@@ -39,11 +39,11 @@ export const Home: React.FC = () => (
         Who made this?
       </Heading>
       <Paragraph>
-        This tool was made by Robert Sargant (<Link href="https://www.parkrun.org.uk/parkrunner/208864/all/">A208864</Link>) in order to scratch a personal itch.
+        This tool was made by Robert Sargant (<Link href="https://www.parkrun.org.uk/parkrunner/208864">A208864</Link>) in order to scratch a personal itch.
         It&apos;s open source, and you can <Link href="https://github.com/sargant/dfyb.run">find it on Github</Link>!
       </Paragraph>
       <Paragraph>
-        If you&apos;d like to give me any feedback, you can find me at <Link href="https://twitter.com/dfyb_run">@dfyb_run</Link> or <Link href="https://twitter.com/sargant">@sargant</Link> on Twitter.
+        If you&apos;d like to give me any feedback, you can email me <Link href="mailto:hello@dfyb.run">hello@dfyb.run</Link> or find me on twitter <Link href="https://twitter.com/dfyb_run">@dfyb_run</Link>.
       </Paragraph>
       <Paragraph>
         If you&apos;d like to tip a little something to cover the costs of developing this, please go to <Link href="https://ko-fi.com/sargant">ko-fi.com/sargant</Link> 🙂

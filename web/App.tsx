@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 
 import * as Pages from './pages'
 import Header from './Header'
+import Footer from './Footer'
 
 const App: React.FC = () => (
   <>
@@ -12,6 +13,7 @@ const App: React.FC = () => (
       <Route path="/faq" element={<Pages.FAQ />} />
       <Route path="/privacy" element={<Pages.Privacy />} />
     </Routes>
+    <Footer />
   </>
 )
 
