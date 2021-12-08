@@ -2,8 +2,8 @@ import { Link, Heading, Paragraph } from '../components'
 import BarcodeForm from './BarcodeForm'
 
 export const Home: React.FC = () => (
-  <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 md:gap-x-24">
-    <div className="mx-8">
+  <div className="container max-w-screen-xl mx-auto my-8 grid grid-cols-1 md:(grid-cols-2 gap-x-12)">
+    <div className="mx-8 mb-12 order-last md:order-first">
       <Heading>
         What is this?
       </Heading>
@@ -43,13 +43,13 @@ export const Home: React.FC = () => (
         It&apos;s open source, and you can <Link href="https://github.com/sargant/dfyb.run">find it on Github</Link>!
       </Paragraph>
       <Paragraph>
-        If you&apos;d like to give me any feedback, you can find me at <Link href="https://twitter.com/dfyb_rub">@dfyb_run</Link> or <Link href="https://twitter.com/sargant">@sargant</Link> on Twitter.
+        If you&apos;d like to give me any feedback, you can find me at <Link href="https://twitter.com/dfyb_run">@dfyb_run</Link> or <Link href="https://twitter.com/sargant">@sargant</Link> on Twitter.
       </Paragraph>
       <Paragraph>
         If you&apos;d like to tip a little something to cover the costs of developing this, please go to <Link href="https://ko-fi.com/sargant">ko-fi.com/sargant</Link> 🙂
       </Paragraph>
     </div>
-    <div>
+    <div className="mx-8 mb-12">
       <BarcodeForm />
     </div>
   </div>

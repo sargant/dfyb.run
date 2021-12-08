@@ -99,106 +99,101 @@ const BarcodeForm: React.FC = () => {
     setSubmitEnabled(formValues.athleteId.length > 1)
   }, [setSubmitEnabled, formValues.athleteId])
 
-  return (
-    <div className="m-8 mt-4 md:mt-8">
-      { showResult
-        ? (
-          <div className="flex flex-col items-center">
-            <h3 className="text-primary dark:text-secondary font-header font-bold text-center text-2xl mb-4">
-              Pass ready for runner {formValues.athleteId}!
-            </h3>
-            <Button onClick={handleCancelPass}>
-              Go back and make changes
-            </Button>
-            <p className="xl:mx-32 text-center my-4">
-              Scan the QR code below with your iPhone to add your barcode to your Apple Wallet
-            </p>
-            <div className="flex-initial bg-white p-6 pb-4 rounded-lg border-width-2 flex-initial">
-              <QRCode value={passUrl} size={128} />
-            </div>
-            <p className="xl:mx-32 text-center mt-8 mb-4">
-              If you&apos;re on your iPhone, click the button below to add the pass directly to Apple Wallet
-            </p>
-            <a href={passUrl}>
-              <img src="/add-to-apple-wallet.svg" className="h-16" alt="Add to Apple Wallet" />
-            </a>
-          </div>
-          )
-        : (
-          <>
-            <Heading className='mt-0 mb-4'>
-              Create your virtual barcode pass
-            </Heading>
-            <div className="lg:(grid mt-4) gap-x-8 gap-y-4 grid-cols-0">
-              <Label>
-                Athlete ID <span className="text-red-700 dark:text-red-500 pl-1 font-normal">required</span>
-                <input
-                  type="text"
-                  placeholder="e.g. A208864"
-                  className={textInputClasses}
-                  {...registerTextInput('athleteId')}
-                />
-              </Label>
-              <Label>
-                Athlete Name
-                <input
-                  type="text"
-                  className={textInputClasses}
-                  {...registerTextInput('athleteName')}
-                />
-              </Label>
-              <Label>
-                <abbr title="In case of emergency">ICE</abbr> Contact Name
-                <input
-                  type="text"
-                  className={textInputClasses}
-                  {...registerTextInput('iceContactName')}
-                />
-              </Label>
-              <Label>
-                <abbr title="In case of emergency">ICE</abbr> Contact Number
-                <input
-                  type="text"
-                  className={textInputClasses}
-                  {...registerTextInput('iceContactNumber')}
-                />
-              </Label>
-              <Label className="md:col-span-2">
-                Essential medical information
-                <input
-                  type="text"
-                  className={textInputClasses}
-                  {...registerTextInput('medicalInfo')}
-                />
-              </Label>
-              <div className="text-base pb-8 lg:pb-0 md:col-span-2 flex flex-row items-center">
-                <input
-                  type="checkbox"
-                  className="w-6 h-6 rounded text-primary bg-black/20 dark:(text-white/10 bg-white/10) border-0 shadow-none mr-4"
-                  {...registerCheckboxInput('useQrCode')}
-                />
-                <div className="flex-1 leading-tight text-sm">
-                  I want to use an Apple Watch<br />
-                  <Tooltip
-                    animation="none"
-                    animateFill={false}
-                    title="The Apple Watch does not support traditional barcodes. Enabling this option will produce a pass with a QR code instead. Volunteers can scan QR codes just fine, but they are not officially supported."
-                    position="bottom"
-                    size="small"
-                  >
-                    <span className="text-sm text-primary dark:text-secondary border-b border-dotted border-primary dark:border-secondary opacity-75 cursor-default">(why does this matter?)</span>
-                  </Tooltip>
-                </div>
-              </div>
-              <Button disabled={!submitEnabled} onClick={handleGeneratePass} className="text-lg">
-                Generate Pass
-              </Button>
-            </div>
-          </>
-          )
-      }
+  if (showResult) {
+    return (
+      <div className="flex flex-col items-center">
+        <h3 className="text-primary dark:text-secondary font-header font-bold text-center text-2xl mb-4">
+          Pass ready for runner {formValues.athleteId}!
+        </h3>
+        <Button onClick={handleCancelPass}>
+          Go back and make changes
+        </Button>
+        <p className="xl:mx-32 text-center my-4">
+          Scan the QR code below with your iPhone to add your barcode to your Apple Wallet
+        </p>
+        <div className="flex-initial bg-white p-6 pb-4 rounded-lg border-width-2 flex-initial">
+          <QRCode value={passUrl} size={128} />
+        </div>
+        <p className="xl:mx-32 text-center mt-8 mb-4">
+          If you&apos;re on your iPhone, click the button below to add the pass directly to Apple Wallet
+        </p>
+        <a href={passUrl}>
+          <img src="/add-to-apple-wallet.svg" className="h-16" alt="Add to Apple Wallet" />
+        </a>
+      </div>
+    )
+  }
+
+  return (<>
+    <Heading>
+      Create your virtual barcode pass
+    </Heading>
+    <div className="mt-4 lg:(grid gap-x-8 gap-y-4 grid-cols-0)">
+      <Label>
+        Athlete ID <span className="text-red-700 dark:text-red-500 pl-1 font-normal">required</span>
+        <input
+          type="text"
+          placeholder="e.g. A208864"
+          className={textInputClasses}
+          {...registerTextInput('athleteId')}
+        />
+      </Label>
+      <Label>
+        Athlete Name
+        <input
+          type="text"
+          className={textInputClasses}
+          {...registerTextInput('athleteName')}
+        />
+      </Label>
+      <Label>
+        <abbr title="In case of emergency">ICE</abbr> Contact Name
+        <input
+          type="text"
+          className={textInputClasses}
+          {...registerTextInput('iceContactName')}
+        />
+      </Label>
+      <Label>
+        <abbr title="In case of emergency">ICE</abbr> Contact Number
+        <input
+          type="text"
+          className={textInputClasses}
+          {...registerTextInput('iceContactNumber')}
+        />
+      </Label>
+      <Label className="md:col-span-2">
+        Essential medical information
+        <input
+          type="text"
+          className={textInputClasses}
+          {...registerTextInput('medicalInfo')}
+        />
+      </Label>
+      <div className="text-base pb-8 lg:pb-0 md:col-span-2 flex flex-row items-center">
+        <input
+          type="checkbox"
+          className="w-6 h-6 rounded text-primary bg-black/20 dark:(text-white/10 bg-white/10) border-0 shadow-none mr-4"
+          {...registerCheckboxInput('useQrCode')}
+        />
+        <div className="flex-1 leading-tight text-sm">
+          I want to use an Apple Watch<br />
+          <Tooltip
+            animation="none"
+            animateFill={false}
+            title="The Apple Watch does not support traditional barcodes. Enabling this option will produce a pass with a QR code instead. Volunteers can scan QR codes just fine, but they are not officially supported."
+            position="bottom"
+            size="small"
+          >
+            <span className="text-sm text-primary dark:text-secondary border-b border-dotted border-primary dark:border-secondary opacity-75 cursor-default">(why does this matter?)</span>
+          </Tooltip>
+        </div>
+      </div>
+      <Button disabled={!submitEnabled} onClick={handleGeneratePass} className="text-lg">
+        Generate Pass
+      </Button>
     </div>
-  )
+  </>)
 }
 
 export default BarcodeForm

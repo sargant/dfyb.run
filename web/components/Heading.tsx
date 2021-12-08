@@ -5,7 +5,7 @@ export const Heading: React.FC<Partial<Pick<HTMLHeadingElement, 'className'>>> =
     font-header
     font-bold
     text-xl
-    mt-8
+    not-first-of-type:mt-8
     mb-2
     ${className}
   `}>
