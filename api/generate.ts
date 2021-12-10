@@ -16,7 +16,6 @@ interface BarcodeOptions {
   iceContactName?: string
   iceContactNumber?: string
   medicalInfo?: string
-  useQrCode?: string
 }
 
 const generateBarcode = async (opt: BarcodeOptions) => {
@@ -49,7 +48,7 @@ const generateBarcode = async (opt: BarcodeOptions) => {
       wwdr: decrypt({ data: certs.wwdr, key })
     }
   }, {
-    serialNumber: `${sanitizedAthleteId}-${opt.useQrCode ? 'qr' : 'c128'}`
+    serialNumber: sanitizedAthleteId
   })
 
   pass.headerFields.push({
@@ -107,12 +106,15 @@ const generateBarcode = async (opt: BarcodeOptions) => {
 
   pass.setBarcodes({
     message: sanitizedAthleteId,
-    format: opt.useQrCode ? 'PKBarcodeFormatQR' : 'PKBarcodeFormatCode128',
+    format: 'PKBarcodeFormatCode128',
+    altText: sanitizedAthleteId
+  }, {
+    message: sanitizedAthleteId,
+    format: 'PKBarcodeFormatQR',
     altText: sanitizedAthleteId
   })
 
   console.log(`Pass generation complete for ${opt.athleteId}`)
-
   return pass
 }
 
