@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useReducer, useState } from 'react'
 import QRCode from 'react-qr-code'
 import qs from 'query-string'
-import { Tooltip } from 'react-tippy'
 import { Heading } from '../components'
 
 const textInputClasses = `
@@ -38,8 +37,7 @@ const formInitialValues = {
   athleteId: '',
   iceContactName: '',
   iceContactNumber: '',
-  medicalInfo: 'None',
-  useQrCode: 'yes'
+  medicalInfo: 'None'
 }
 
 const formReducer = (values: typeof formInitialValues, update: [string, string]) => {
@@ -85,13 +83,6 @@ const BarcodeForm: React.FC = () => {
     value: formValues[name],
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
       dispatch([name, event.target.value])
-    }
-  })
-
-  const registerCheckboxInput = (name: keyof typeof formValues) => ({
-    checked: formValues[name] === 'yes',
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
-      dispatch([name, event.target.checked ? 'yes' : ''])
     }
   })
 
@@ -170,26 +161,7 @@ const BarcodeForm: React.FC = () => {
           {...registerTextInput('medicalInfo')}
         />
       </Label>
-      <div className="text-base pb-8 lg:pb-0 md:col-span-2 flex flex-row items-center">
-        <input
-          type="checkbox"
-          className="w-6 h-6 rounded text-primary bg-black/20 dark:(text-white/10 bg-white/10) border-0 shadow-none mr-4"
-          {...registerCheckboxInput('useQrCode')}
-        />
-        <div className="flex-1 leading-tight text-sm">
-          I want to use an Apple Watch<br />
-          <Tooltip
-            animation="none"
-            animateFill={false}
-            title="The Apple Watch does not support traditional barcodes. Enabling this option will produce a pass with a QR code instead. Volunteers can scan QR codes just fine, but they are not officially supported."
-            position="bottom"
-            size="small"
-          >
-            <span className="text-sm text-primary dark:text-secondary border-b border-dotted border-primary dark:border-secondary opacity-75 cursor-default">(why does this matter?)</span>
-          </Tooltip>
-        </div>
-      </div>
-      <Button disabled={!submitEnabled} onClick={handleGeneratePass} className="text-lg">
+      <Button disabled={!submitEnabled} onClick={handleGeneratePass} className="text-lg mt-4">
         Generate Pass
       </Button>
     </div>

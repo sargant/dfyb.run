@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import ReactGA from 'react-ga'
 import { BrowserRouter } from 'react-router-dom'
 
-import 'react-tippy/dist/tippy.css'
 import './fonts.css'
 import 'virtual:windi.css'
 
