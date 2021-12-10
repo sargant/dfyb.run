@@ -125,8 +125,7 @@ const listener: RequestListener = async (request, response) => {
     athleteName: parameters.get('athleteName') ?? undefined,
     iceContactName: parameters.get('iceContactName') ?? undefined,
     iceContactNumber: parameters.get('iceContactNumber') ?? undefined,
-    medicalInfo: parameters.get('medicalInfo') ?? undefined,
-    useQrCode: parameters.get('useQrCode') ?? undefined
+    medicalInfo: parameters.get('medicalInfo') ?? undefined
   })
 
   response.writeHead(200, {
