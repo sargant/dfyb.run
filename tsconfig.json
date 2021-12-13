@@ -20,7 +20,11 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "useDefineForClassFields": true,
+    "types": [
+      "jest",
+      "unplugin-icons/types/react"
+    ],
+    "useDefineForClassFields": true
   },
-  "include": ["./**/*", ".*"]
+  "include": ["./**/*", ".*"],
 }
