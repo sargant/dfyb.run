@@ -21,6 +21,9 @@
     "skipLibCheck": true,
     "strict": true,
     "useDefineForClassFields": true,
+    "types": [
+      "unplugin-icons/types/react"
+    ]
   },
-  "include": ["./**/*", ".*"]
+  "include": ["./**/*", ".*"],
 }

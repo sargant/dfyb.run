@@ -13,8 +13,9 @@
     "encrypt-certs": "ts-node tools/encrypt-certs.ts"
   },
   "dependencies": {
-    "@mdi/js": "^6.5.95",
-    "@mdi/react": "^1.5.0",
+    "@iconify-json/fa-brands": "^1.0.2",
+    "@iconify-json/fa-solid": "^1.0.2",
+    "@svgr/core": "^5.5.0",
     "@types/jest": "^27.0.3",
     "@types/node": "^16.11.12",
     "@types/react": "^17.0.0",
@@ -40,6 +41,7 @@
     "ts-jest": "^27.1.0",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.2",
+    "unplugin-icons": "^0.12.23",
     "vercel": "^23.1.2",
     "vite": "^2.7.0",
     "vite-plugin-windicss": "^1.5.4",
