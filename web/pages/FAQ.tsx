@@ -1,7 +1,7 @@
 import { Heading, Link, Paragraph } from '../components'
 
 export const FAQ: React.FC = () => (
-  <div className="container mx-auto my-8 max-w-screen-sm">
+  <div className="container mx-auto my-8 px-8 max-w-screen-sm">
     <Heading>
      How do I use it on my iPhone?
     </Heading>

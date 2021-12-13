@@ -1,7 +1,7 @@
 import { Heading, Link, Paragraph } from '../components'
 
 export const Privacy: React.FC = () => (
-  <div className="container mx-auto my-8 max-w-screen-sm">
+  <div className="container mx-auto my-8 px-8 max-w-screen-sm">
     <Heading>
       Your privacy
     </Heading>
