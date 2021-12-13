@@ -2,17 +2,24 @@ import IconGithub from '~icons/fa-brands/github-square'
 import IconTwitter from '~icons/fa-brands/twitter-square'
 import IconEnvelope from '~icons/fa-solid/envelope-square'
 
+const FooterLink: React.FC<Pick<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>> = ({ children, href }) => (
+  <a className="hover:(text-primary dark:text-secondary) block flex flex-row items-center mx-8 mb-4 sm:mb-0" href={href}>
+    {children}
+  </a>
+)
+
 const Footer: React.FC = () => (
-  <div className="flex flex-row justify-center my-16 children:(block mx-8) svg:(text-4xl inline-block mr-2)">
-    <a className="hover:text-secondary" href="https://github.com/sargant/dfyb.run">
-      <IconGithub /> /sargant/dfyb.run
-    </a>
-    <a className="hover:text-secondary" href="https://twitter.com/dfyb_run">
+  <div className="flex flex-col sm:flex-row justify-center mx-auto mb-16 sm:mt-16 svg:(text-3xl mr-2)">
+    <FooterLink href="https://github.com/sargant/dfyb.run">
+      <IconGithub />
+      <span>/sargant/dfyb.run</span>
+    </FooterLink>
+    <FooterLink href="https://twitter.com/dfyb_run">
       <IconTwitter /> @dfyb_run
-    </a>
-    <a className="hover:text-secondary" href="mailto:hello@dfyb.run">
+    </FooterLink>
+    <FooterLink href="mailto:hello@dfyb.run">
       <IconEnvelope /> hello@dfyb.run
-    </a>
+    </FooterLink>
   </div>
 )
 
