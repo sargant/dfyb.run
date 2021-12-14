@@ -8,13 +8,13 @@ export const Home: React.FC = () => (
         What is this?
       </Heading>
       <Paragraph>
-        <strong>dfyb.run</strong> is a tool that lets you generate Apple Wallet passes that can be used for
-        scanning at the end of your weekly, organised 5K or 2K run.
+        <strong>dfyb.run</strong> is a tool that lets you add your <Link href="https://parkrun.com">parkrun</Link> barcode
+        to the <Link href="https://www.apple.com/wallet">Apple Wallet</Link> on your iPhone or Apple Watch.
       </Paragraph>
       <Paragraph>
         In <Link href="https://blog.parkrun.com/uk/2021/11/22/scanning-from-mobile-devices/">November 2021</Link> parkrun HQ
         announced that virtual barcodes were now acceptable at their events, and that a physical barcode was no longer mandatory.
-        As iPhones and Apple Watches have the <Link href="https://www.apple.com/wallet/">Apple Wallet</Link> feature that make ID passes and barcodes easily accessible,
+        As iPhones and Apple Watches have the Apple Wallet feature that make ID passes and barcodes easily accessible,
         it seemed like a great fit!
       </Paragraph>
       <div className="flex flex-row justify-around my-4">

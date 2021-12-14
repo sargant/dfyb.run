@@ -22,15 +22,15 @@ const HeaderLink: React.FC<{ path: string }> = ({ children, path }) => {
 
 const Header: React.FC = () => (
   <div className="bg-primary text-white">
-    <div className="flex flex-col justify-center items-center text-center pt-2 pb-6 sm:px-32">
+    <div className="flex flex-col justify-center items-center text-center pt-4 pb-6 sm:px-32">
       <div className="flex flex-row justify-center text-center items-center">
         <img src="/logo.svg" alt="dfyb.run logo" className="w-16 md:w-24" />
         <h1 className="text-4xl md:text-6xl font-header ml-4">
           <span className="text-secondary">dfyb</span>.run
         </h1>
       </div>
-      <p className="mt-4">
-        Add your barcodes for a certain 5K and 2K <span className="whitespace-nowrap">run 🏃💨</span><br />
+      <p className="mt-4 mx-8">
+        Add your parkrun <span className="whitespace-nowrap">🏃💨</span> barcode
         to your <span className="whitespace-nowrap">iPhone 📱</span> and <span className="whitespace-nowrap">Apple Watch ⌚</span>
       </p>
     </div>
