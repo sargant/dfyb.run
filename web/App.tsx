@@ -12,7 +12,7 @@ const App: React.FC = () => (
       <Route path="/" element={<Pages.Home />} />
       <Route path="/faq" element={<Pages.FAQ />} />
       <Route path="/privacy" element={<Pages.Privacy />} />
-      <Navigate to="/" replace={true} /> 
+      <Navigate to="/" replace={true} />
     </Routes>
     <Footer />
   </>
