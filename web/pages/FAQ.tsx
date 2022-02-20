@@ -63,7 +63,7 @@ export const FAQ: React.FC = () => (
       The barcode is showing on my phone, but isn&apos;t showing on my watch
     </Heading>
     <Paragraph>
-      There is a <Link ref="https://appleinsider.com/articles/22/01/29/apple-watch-wallet-sync-issues-found-following-watchos-84-ios-153-update">known bug</Link> introduced
+      There is a <Link href="https://appleinsider.com/articles/22/01/29/apple-watch-wallet-sync-issues-found-following-watchos-84-ios-153-update">known bug</Link> introduced
       in iOS 15.3 and watchOS 8.4 that means barcodes may not be synced from phone to watch correctly.
     </Paragraph>
     <Paragraph>
