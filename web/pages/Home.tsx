@@ -50,7 +50,30 @@ export const Home: React.FC = () => (
       </Paragraph>
     </div>
     <div className="mx-8 mb-12">
-      <BarcodeForm />
+      {/* <BarcodeForm /> */}
+      <div className="bg-gray-200 dark:bg-gray-700 p-4 px-12 rounded-lg">
+        <Heading className="text-center">
+          Sorry!
+        </Heading>
+        <Paragraph>
+          Due to a significant number of people inputting incorect Athlete IDs, <strong>dfyb.run</strong> is currently causing significant issues
+          for a large parkrun.
+        </Paragraph>
+        <Paragraph>
+          As I&apos;m pretty busy in real life at the moment, unless I can work with parkrun directly to do something along the lines of
+          validating people&apos;s IDs, I&apos;m afraid I have to temporarily disable this service.
+        </Paragraph>
+        <Paragraph>
+          Thank you so much to everyone who has supported this so far, and I hope to find a resolution soon!
+        </Paragraph>
+        <Paragraph>
+          <strong>
+            <em>
+              &ndash; Rob
+            </em>
+          </strong>
+        </Paragraph>
+      </div>
     </div>
   </div>
 )
