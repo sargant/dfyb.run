@@ -56,8 +56,8 @@ export const Home: React.FC = () => (
           Sorry!
         </Heading>
         <Paragraph>
-          Due to a significant number of people inputting incorect Athlete IDs, <strong>dfyb.run</strong> is currently causing significant issues
-          for a large parkrun.
+          Due to a significant number of people inputting incorrect Athlete IDs, <strong>dfyb.run</strong> is currently causing results processing
+          issues for at least one large parkrun.
         </Paragraph>
         <Paragraph>
           As I&apos;m pretty busy in real life at the moment, unless I can work with parkrun directly to do something along the lines of
