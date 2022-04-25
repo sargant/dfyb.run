@@ -3,6 +3,17 @@ import { Heading, Link, Paragraph } from '../components'
 export const FAQ: React.FC = () => (
   <div className="container mx-auto my-8 px-8 max-w-screen-sm">
     <Heading>
+      How do I find my athlete ID?
+    </Heading>
+    <Paragraph>
+      Your athlete ID, or parkrun ID, is the number printed at the bottom of your existing barcode,
+      beginning with an &quot;A&quot; (e.g. <em>A208864</em>).
+    </Paragraph>
+    <Paragraph>
+      If you have&apos;t got an existing barcode to hand, you can find a link to it in a results email you&apos;ve received,
+      or by logging in <Link href="https://www.parkrun.com/profile/barcode/">here</Link> on the parkrun website.
+    </Paragraph>
+    <Heading>
      How do I use it on my iPhone?
     </Heading>
     <Paragraph>
@@ -47,6 +58,17 @@ export const FAQ: React.FC = () => (
     <Paragraph>
       The new <Link href="https://volunteer.parkrun.com/principles/virtual-volunteer">Virtual Volunteer app</Link> used by parkrun
       can scan QR codes just fine. While not officially supported, they work great &mdash; and actually scan even faster!
+    </Paragraph>
+    <Heading>
+      The barcode is showing on my phone, but isn&apos;t showing on my watch
+    </Heading>
+    <Paragraph>
+      There is a <Link href="https://appleinsider.com/articles/22/01/29/apple-watch-wallet-sync-issues-found-following-watchos-84-ios-153-update">known bug</Link> introduced
+      in iOS 15.3 and watchOS 8.4 that means barcodes may not be synced from phone to watch correctly.
+    </Paragraph>
+    <Paragraph>
+      A workaround is to open the barcode pass on your phone, and share it to yourself via iMessage. Open the notification on your Apple Watch,
+      and you will be able to install the pass directly on your watch.
     </Paragraph>
   </div>
 )
