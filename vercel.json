@@ -3,11 +3,5 @@
     "api/*": {
       "includeFiles": "pass-models/**"
     }
-  },
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
+  }
 }
