@@ -8,24 +8,24 @@ const FooterLink: React.FC<Pick<React.AnchorHTMLAttributes<HTMLAnchorElement>, '
   </a>
 )
 
-const Footer: React.FC = () => (
-  <>
-    <div className="flex flex-col sm:flex-row justify-center mx-auto mb-8 sm:mt-16 svg:(text-3xl mr-2)">
-      <FooterLink href="https://github.com/sargant/dfyb.run">
-        <IconGithub />
-        <span>/sargant/dfyb.run</span>
-      </FooterLink>
-      <FooterLink href="https://twitter.com/dfyb_run">
-        <IconTwitter /> @dfyb_run
-      </FooterLink>
-      <FooterLink href="mailto:hello@dfyb.run">
-        <IconEnvelope /> hello@dfyb.run
-      </FooterLink>
-    </div>
-    <div className="text-center opacity-50 m-8">
-      This is an unofficial tool and is not affiliated with parkrun or Parkrun Limited
-    </div>
-  </>
-)
-
-export default Footer
+export const Footer: React.FC = () => {
+  return (
+    <>
+      <div className="flex flex-col sm:flex-row justify-center mx-auto mb-8 sm:mt-16 svg:(text-3xl mr-2)">
+        <FooterLink href="https://github.com/sargant/dfyb.run">
+          <IconGithub />
+          <span>/sargant/dfyb.run</span>
+        </FooterLink>
+        <FooterLink href="https://twitter.com/dfyb_run">
+          <IconTwitter /> @dfyb_run
+        </FooterLink>
+        <FooterLink href="mailto:hello@dfyb.run">
+          <IconEnvelope /> hello@dfyb.run
+        </FooterLink>
+      </div>
+      <div className="text-center opacity-50 m-8">
+        This is an unofficial tool and is not affiliated with parkrun or Parkrun Limited
+      </div>
+    </>
+  )
+}

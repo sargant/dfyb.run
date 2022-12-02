@@ -15,6 +15,7 @@ export default defineConfig({
       colors: {
         primary: '#204C72',
         secondary: '#ECD95F',
+        warning: '#D36525',
         gray: colors.trueGray
       },
       fontFamily: {

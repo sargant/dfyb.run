@@ -159,7 +159,7 @@ const BarcodeForm: React.FC = () => {
               {...registerTextInput('medicalInfo')}
             />
           </Label>
-          <Button disabled={!submitEnabled} onClick={handleGeneratePass} className="text-lg mt-4">
+          <Button disabled={true || !submitEnabled} onClick={handleGeneratePass} className="text-lg mt-4">
             Generate Pass
           </Button>
         </div>

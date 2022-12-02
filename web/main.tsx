@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 import './fonts.css'
 import 'virtual:windi.css'
 
-import App from './App'
+import { App } from './App'
 
 ReactGA.initialize('G-8LZWV2LRNQ')
 
