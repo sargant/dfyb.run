@@ -108,7 +108,10 @@ const BarcodeForm: React.FC = () => {
   })
 
   useEffect(() => {
-    setSubmitEnabled(formValues.athleteId.length > 1)
+    const hasAthleteId = formValues.athleteId.length > 1;
+    const userAgent = navigator.userAgent; 
+    const isAndroid = /android/i.test(userAgent);
+    setSubmitEnabled(hasAthleteId && isAndroid);
   }, [setSubmitEnabled, formValues.athleteId])
 
   if (!showBarcode) {
@@ -159,7 +162,7 @@ const BarcodeForm: React.FC = () => {
               {...registerTextInput('medicalInfo')}
             />
           </Label>
-          <Button disabled={true || !submitEnabled} onClick={handleGeneratePass} className="text-lg mt-4">
+          <Button disabled={!submitEnabled} onClick={handleGeneratePass} className="text-lg mt-4">
             Generate Pass
           </Button>
         </div>
