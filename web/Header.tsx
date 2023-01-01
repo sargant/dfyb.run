@@ -23,9 +23,9 @@ const HeaderLink: React.FC<{ path: string }> = ({ children, path }) => {
 export const Header: React.FC = () => {
   return (
     <>
-      <div className='bg-warning text-white text-center'>
+      <div className='bg-success text-black text-center'>
         <p className='py-2'>
-          Passes cannot currently be generated as my Apple Developer account has expired 😶 and I need to buy a new one &mdash; sorry, and please check back in a few days!
+          The generator is back online for 2023! 🎆 Thanks for your patience 🙏
         </p>
       </div>
       <div className="bg-primary text-white">

@@ -3,6 +3,9 @@ import QRCode from 'react-qr-code'
 import qs from 'query-string'
 import { Heading } from '../components'
 
+import Square from '~icons/fa-regular/square'
+import CheckedSquare from '~icons/fa-solid/check-square'
+
 const textInputClasses = `
   w-full
   rounded-md
@@ -65,6 +68,11 @@ const BarcodeForm: React.FC = () => {
   const [submitEnabled, setSubmitEnabled] = useState(false)
   const [showBarcode, setShowBarcode] = useState(false)
   const [passUrl, setPassUrl] = useState('')
+  const [showAdditionalFields, setShowAdditionalFields] = useState(false)
+
+  const handleToggleAdditionalFields = useCallback(() => {
+    setShowAdditionalFields(val => !val)
+  }, [setShowAdditionalFields])
 
   const handleGeneratePass = useCallback(() => {
     if (!submitEnabled) {
@@ -135,31 +143,42 @@ const BarcodeForm: React.FC = () => {
               {...registerTextInput('athleteName')}
             />
           </Label>
-          <Label>
-            <abbr title="In case of emergency">ICE</abbr> Contact Name
-            <input
-              type="text"
-              className={textInputClasses}
-              {...registerTextInput('iceContactName')}
-            />
-          </Label>
-          <Label>
-            <abbr title="In case of emergency">ICE</abbr> Contact Number
-            <input
-              type="text"
-              className={textInputClasses}
-              {...registerTextInput('iceContactNumber')}
-            />
-          </Label>
-          <Label className="md:col-span-2">
-            Essential medical information
-            <input
-              type="text"
-              className={textInputClasses}
-              {...registerTextInput('medicalInfo')}
-            />
-          </Label>
-          <Button disabled={true || !submitEnabled} onClick={handleGeneratePass} className="text-lg mt-4">
+          <span
+            className="lg:(col-span-2) text-primary hover:underline cursor-pointer"
+            onClick={handleToggleAdditionalFields}>
+            {showAdditionalFields
+              ? <CheckedSquare className='inline-block mr-1' />
+              : <Square className='inline-block mr-1' />
+            }
+            Add additional ICE information...
+          </span>
+          {showAdditionalFields && (<>
+            <Label>
+              <abbr title="In case of emergency">ICE</abbr> Contact Name
+              <input
+                type="text"
+                className={textInputClasses}
+                {...registerTextInput('iceContactName')}
+              />
+            </Label>
+            <Label>
+              <abbr title="In case of emergency">ICE</abbr> Contact Number
+              <input
+                type="text"
+                className={textInputClasses}
+                {...registerTextInput('iceContactNumber')}
+              />
+            </Label>
+            <Label className="md:col-span-2">
+              Essential medical information
+              <input
+                type="text"
+                className={textInputClasses}
+                {...registerTextInput('medicalInfo')}
+              />
+            </Label>
+          </>)}
+          <Button disabled={!submitEnabled} onClick={handleGeneratePass} className="text-lg mt-4">
             Generate Pass
           </Button>
         </div>

@@ -21,10 +21,16 @@
     "skipLibCheck": true,
     "strict": true,
     "types": [
+      "node",
       "jest",
       "unplugin-icons/types/react"
     ],
     "useDefineForClassFields": true
   },
   "include": ["./**/*", ".*"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  }
 }
