@@ -118,6 +118,7 @@ const generateBarcode = async (opt: BarcodeOptions) => {
   return pass
 }
 
+// eslint-disable-next-line @typescript-eslint/no-misused-promises
 const listener: RequestListener = async (request, response) => {
   const parameters = new URL(request.url ?? '', `https://${request?.headers.host ?? 'example.com'}`).searchParams
   const pass = await generateBarcode({
