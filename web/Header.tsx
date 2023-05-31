@@ -23,11 +23,13 @@ const HeaderLink: React.FC<{ path: string }> = ({ children, path }) => {
 export const Header: React.FC = () => {
   return (
     <>
+      {/*
       <div className='bg-success text-black text-center'>
         <p className='py-2'>
           The generator is back online for 2023! 🎆 Thanks for your patience 🙏
         </p>
       </div>
+      */}
       <div className="bg-primary text-white">
         <div className="flex flex-col justify-center items-center text-center pt-4 pb-6 sm:px-32">
           <div className="flex flex-row justify-center text-center items-center">
