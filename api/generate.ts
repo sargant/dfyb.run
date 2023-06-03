@@ -1,4 +1,4 @@
-import { RequestListener } from 'http'
+import { IncomingMessage, ServerResponse } from 'http'
 import PasskitGenerator from 'passkit-generator'
 import { join } from 'path'
 
@@ -120,7 +120,7 @@ const generateBarcode = async (opt: BarcodeOptions) => {
   return pass
 }
 
-const listener: RequestListener = async (request, response) => {
+const listener = async (request: IncomingMessage, response: ServerResponse): Promise<void> => {
   const parameters = new URL(request.url ?? '', `https://${request?.headers.host ?? 'example.com'}`).searchParams
   const pass = await generateBarcode({
     athleteId: parameters.get('athleteId') ?? undefined,
