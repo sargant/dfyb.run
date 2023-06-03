@@ -1,11 +1,11 @@
-import { IncomingMessage, ServerResponse } from 'http'
-import PasskitGenerator from 'passkit-generator'
+import { VercelRequest, VercelResponse } from '@vercel/node'
+import PKPassGenerator from 'passkit-generator'
 import { join } from 'path'
 
 import * as certs from './certs.enc.js'
 import { decrypt } from '../lib/encryption.js'
 
-const { PKPass } = PasskitGenerator
+const { PKPass } = PKPassGenerator
 
 export const sanitizeAthleteId = (athleteId: string) => {
   const trimmedId = athleteId.trim().toUpperCase()
@@ -120,7 +120,7 @@ const generateBarcode = async (opt: BarcodeOptions) => {
   return pass
 }
 
-const listener = async (request: IncomingMessage, response: ServerResponse): Promise<void> => {
+const listener = async (request: VercelRequest, response: VercelResponse): Promise<void> => {
   const parameters = new URL(request.url ?? '', `https://${request?.headers.host ?? 'example.com'}`).searchParams
   const pass = await generateBarcode({
     athleteId: parameters.get('athleteId') ?? undefined,
