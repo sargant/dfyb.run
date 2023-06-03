@@ -1,4 +1,3 @@
-
 export const Link: React.FC<Pick<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 'className'>> = ({ href, className, children }) => (
   <a
     href={href}
