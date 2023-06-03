@@ -1,9 +1,11 @@
 import { RequestListener } from 'http'
-import { PKPass } from 'passkit-generator'
+import PasskitGenerator from 'passkit-generator'
 import { join } from 'path'
 
 import * as certs from './certs.enc.js'
-import { decrypt } from '../lib/encryption'
+import { decrypt } from '../lib/encryption.js'
+
+const { PKPass } = PasskitGenerator
 
 export const sanitizeAthleteId = (athleteId: string) => {
   const trimmedId = athleteId.trim().toUpperCase()
@@ -41,7 +43,7 @@ const generateBarcode = async (opt: BarcodeOptions) => {
   })}`)
 
   const pass = await PKPass.from({
-    model: join(__dirname, '..', 'pass-models', 'dfyb.run.pass'),
+    model: join(process.cwd(), 'pass-models', 'dfyb.run.pass'),
     certificates: {
       signerCert: decrypt({ data: certs.signerCert, key }),
       signerKey: decrypt({ data: certs.signerKey, key }),
