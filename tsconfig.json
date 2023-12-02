@@ -8,7 +8,7 @@
     ],
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": false,
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
@@ -21,10 +21,14 @@
     "skipLibCheck": true,
     "strict": true,
     "types": [
+      "node",
       "jest",
       "unplugin-icons/types/react"
     ],
     "useDefineForClassFields": true
   },
   "include": ["./**/*", ".*"],
+  "ts-node": {
+    "esm": true
+  }
 }
