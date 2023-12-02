@@ -1,6 +1,10 @@
 import { readFileSync, writeFileSync } from 'fs'
-import { join } from 'path'
-import { encrypt } from '../lib/encryption'
+import { dirname, join } from 'path'
+import { fileURLToPath } from 'url'
+import { encrypt } from '../lib/encryption.js'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 let output = ''
 
