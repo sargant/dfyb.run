@@ -170,7 +170,7 @@ const BarcodeForm: React.FC = () => {
   return (
     <div className="flex flex-col items-center">
       <h3 className="text-primary dark:text-secondary font-header font-bold text-center text-2xl mb-4">
-        Genrating pass for runner {formValues.athleteId}
+        Generating pass for runner {formValues.athleteId}
       </h3>
       <p className="xl:mx-24 mb-4 text-center">
         Before continuing, please tap the button below to open the parkrun profile
