@@ -11,7 +11,7 @@
     "build": "tsc && vite build",
     "serve": "vite preview",
     "test": "jest",
-    "encrypt-certs": "ts-node tools/encrypt-certs.ts"
+    "encrypt-certs": "tsx tools/encrypt-certs.ts"
   },
   "dependencies": {
     "@iconify-json/fa-brands": "^1.0.2",
@@ -40,12 +40,14 @@
     "react-qr-code": "^2.0.3",
     "react-router-dom": "^6.2.1",
     "ts-jest": "^29.1.0",
-    "ts-node": "^10.4.0",
     "typescript": "^4.5.2",
     "unplugin-icons": "^0.12.23",
     "vercel": "^30.1.0",
     "vite": "^2.7.0",
     "vite-plugin-windicss": "^1.5.4",
     "windicss": "^3.2.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2"
   }
 }
