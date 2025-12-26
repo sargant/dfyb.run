@@ -47,7 +47,13 @@ const formReducer = (values: typeof formInitialValues, update: [string, string])
       return { ...formInitialValues }
     }
     case 'athleteId': {
-      const transformedVal = newValue.toUpperCase()
+      let transformedVal = newValue.toUpperCase()
+
+      // Any numerical values should just prepend the 'A'
+      if (transformedVal.length > 0 && transformedVal.charAt(0) !== 'A') {
+        transformedVal = `A${transformedVal}`;
+      }
+
       return /^$|^A[1-9]?$|^A[1-9][0-9]{0,8}$/.test(transformedVal)
         ? { ...values, athleteId: transformedVal }
         : values
