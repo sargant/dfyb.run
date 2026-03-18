@@ -22,7 +22,6 @@
     "strict": true,
     "types": [
       "node",
-      "jest",
       "unplugin-icons/types/react"
     ],
     "useDefineForClassFields": true
