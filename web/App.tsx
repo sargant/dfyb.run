@@ -1,9 +1,8 @@
-import React from 'react'
-import { Navigate, Route, Routes } from 'react-router-dom'
-
-import * as Pages from './pages'
-import { Header } from './Header'
-import { Footer } from './Footer'
+import type React from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
+import { Footer } from "./Footer";
+import { Header } from "./Header";
+import * as Pages from "./pages";
 
 export const App: React.FC = () => {
   return (
@@ -17,5 +16,5 @@ export const App: React.FC = () => {
       </Routes>
       <Footer />
     </>
-  )
-}
+  );
+};
