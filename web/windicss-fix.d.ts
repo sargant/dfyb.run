@@ -1,16 +1,16 @@
-declare module 'windicss/colors' {
+declare module "windicss/colors" {
   interface ColorScale {
-    [key: string | number]: string
+    [key: string | number]: string;
   }
 
   interface WindiColors {
-    [key: string]: string | ColorScale
+    [key: string]: string | ColorScale;
   }
 
-  const colors: WindiColors
-  export default colors
+  const colors: WindiColors;
+  export default colors;
 }
 
-declare module 'windicss/helpers' {
-  export function defineConfig(config: object): object
+declare module "windicss/helpers" {
+  export function defineConfig(config: object): object;
 }

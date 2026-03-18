@@ -6,8 +6,7 @@
   "scripts": {
     "start": "vercel dev",
     "dev": "vite --host",
-    "check": "tsc && npm run lint",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "check": "tsc && biome check",
     "build": "tsc && vite build",
     "serve": "vite preview",
     "test": "vitest",
@@ -20,12 +19,6 @@
     "@typescript-eslint/parser": "^5.59.8",
     "@vercel/node": "5.6.16",
     "@vitejs/plugin-react": "^1.1.1",
-    "eslint": "^8.42.0",
-    "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-react": "^7.32.2",
     "passkit-generator": "^3.1.9",
     "query-string": "^7.0.1",
     "react": "^17.0.2",
@@ -36,6 +29,7 @@
     "typescript": "5.9.3"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.4.8",
     "@iconify-json/fa-brands": "1.2.2",
     "@iconify-json/fa-solid": "1.2.2",
     "@svgr/core": "8.1.0",

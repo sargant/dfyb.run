@@ -1,4 +1,6 @@
-export const Link: React.FC<Pick<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 'className'>> = ({ href, className, children }) => (
+export const Link: React.FC<
+  Pick<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href" | "className">
+> = ({ href, className, children }) => (
   <a
     href={href}
     target="_blank"
@@ -9,8 +11,9 @@ export const Link: React.FC<Pick<React.AnchorHTMLAttributes<HTMLAnchorElement>, 
       dark:text-secondary
       hover:no-underline
       whitespace-nowrap
-      ${className ?? ''}
-    `}>
+      ${className ?? ""}
+    `}
+  >
     {children}
   </a>
-)
+);

@@ -1,7 +1,7 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation } from "react-router-dom";
 
 const HeaderLink: React.FC<{ path: string }> = ({ children, path }) => {
-  const { pathname } = useLocation()
+  const { pathname } = useLocation();
   return (
     <Link
       to={path}
@@ -13,12 +13,13 @@ const HeaderLink: React.FC<{ path: string }> = ({ children, path }) => {
         cursor-pointer
         p-2
         bg-white/0 hover:bg-opacity-10
-        border-b-4 ${pathname === path ? 'text-secondary border-secondary' : 'border-transparent'}
-      `}>
+        border-b-4 ${pathname === path ? "text-secondary border-secondary" : "border-transparent"}
+      `}
+    >
       {children}
     </Link>
-  )
-}
+  );
+};
 
 export const Header: React.FC = () => {
   return (
@@ -39,24 +40,19 @@ export const Header: React.FC = () => {
             </h1>
           </div>
           <p className="mt-4 mx-8">
-            Add your parkrun <span className="whitespace-nowrap">🏃💨</span> barcode
-            to your <span className="whitespace-nowrap">iPhone 📱</span> and <span className="whitespace-nowrap">Apple Watch ⌚</span>
+            Add your parkrun <span className="whitespace-nowrap">🏃💨</span>{" "}
+            barcode to your <span className="whitespace-nowrap">iPhone 📱</span>{" "}
+            and <span className="whitespace-nowrap">Apple Watch ⌚</span>
           </p>
         </div>
         <div className="bg-white/10">
           <div className="flex flex-row justify-center align-middle max-w-screen-sm mx-auto">
-            <HeaderLink path="/">
-              Home
-            </HeaderLink>
-            <HeaderLink path="/faq">
-              FAQ
-            </HeaderLink>
-            <HeaderLink path="/privacy">
-              Privacy
-            </HeaderLink>
+            <HeaderLink path="/">Home</HeaderLink>
+            <HeaderLink path="/faq">FAQ</HeaderLink>
+            <HeaderLink path="/privacy">Privacy</HeaderLink>
           </div>
         </div>
       </div>
     </>
-  )
-}
+  );
+};

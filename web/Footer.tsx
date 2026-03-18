@@ -1,12 +1,17 @@
-import IconGithub from '~icons/fa-brands/github-square'
-import IconTwitter from '~icons/fa-brands/twitter-square'
-import IconEnvelope from '~icons/fa-solid/envelope-square'
+import IconGithub from "~icons/fa-brands/github-square";
+import IconTwitter from "~icons/fa-brands/twitter-square";
+import IconEnvelope from "~icons/fa-solid/envelope-square";
 
-const FooterLink: React.FC<Pick<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>> = ({ children, href }) => (
-  <a className="hover:(text-primary dark:text-secondary) block flex flex-row items-center mx-8 mb-4 sm:mb-0" href={href}>
+const FooterLink: React.FC<
+  Pick<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href">
+> = ({ children, href }) => (
+  <a
+    className="hover:(text-primary dark:text-secondary) block flex flex-row items-center mx-8 mb-4 sm:mb-0"
+    href={href}
+  >
     {children}
   </a>
-)
+);
 
 export const Footer: React.FC = () => {
   return (
@@ -24,8 +29,9 @@ export const Footer: React.FC = () => {
         </FooterLink>
       </div>
       <div className="text-center opacity-50 m-8">
-        This is an unofficial tool and is not affiliated with parkrun or Parkrun Limited
+        This is an unofficial tool and is not affiliated with parkrun or Parkrun
+        Limited
       </div>
     </>
-  )
-}
+  );
+};
