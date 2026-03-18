@@ -17,7 +17,7 @@ export default defineConfig({
         secondary: '#ECD95F',
         warning: '#D36525',
         success: '#59C9A5',
-        gray: colors.trueGray
+        gray: colors.neutral
       },
       fontFamily: {
         header: ['"Barlow Semi Condensed"', 'sans-serif']

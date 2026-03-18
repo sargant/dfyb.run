@@ -2,7 +2,7 @@ import { VercelRequest, VercelResponse } from '@vercel/node'
 import PKPassGenerator from 'passkit-generator'
 import { join } from 'path'
 
-import * as certs from './certs.enc.js'
+import * as certs from './certs.js'
 import { decrypt } from '../lib/encryption.js'
 
 const { PKPass } = PKPassGenerator
