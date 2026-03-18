@@ -1,19 +1,11 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
@@ -23,11 +15,13 @@
     "types": [
       "node",
       "unplugin-icons/types/react"
-    ],
-    "useDefineForClassFields": true
+    ]
   },
-  "include": ["./**/*", ".*"],
-  "ts-node": {
-    "esm": true
-  }
+  "include": [
+    "api",
+    "lib",
+    "tools",
+    "web",
+    "vite.config.ts"
+  ],
 }

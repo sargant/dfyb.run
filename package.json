@@ -14,9 +14,6 @@
     "encrypt-certs": "tsx tools/encrypt-certs.ts"
   },
   "dependencies": {
-    "@iconify-json/fa-brands": "^1.0.2",
-    "@iconify-json/fa-solid": "^1.0.2",
-    "@svgr/core": "^5.5.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^5.59.8",
@@ -36,16 +33,21 @@
     "react-ga4": "^1.4.1",
     "react-qr-code": "^2.0.3",
     "react-router-dom": "^6.2.1",
-    "typescript": "5.9.3",
-    "unplugin-icons": "^0.12.23",
-    "vite-plugin-windicss": "^1.5.4",
-    "windicss": "^3.2.1"
+    "typescript": "5.9.3"
   },
   "devDependencies": {
+    "@iconify-json/fa-brands": "1.2.2",
+    "@iconify-json/fa-solid": "1.2.2",
+    "@svgr/core": "8.1.0",
+    "@svgr/plugin-jsx": "8.1.0",
+    "@tailwindcss/forms": "0.5.11",
     "@types/node": "25.5.0",
     "tsx": "4.21.0",
+    "unplugin-icons": "23.0.1",
     "vercel": "50.33.0",
     "vite": "7.3.1",
-    "vitest": "4.1.0"
+    "vite-plugin-windicss": "1.9.4",
+    "vitest": "4.1.0",
+    "windicss": "3.5.6"
   }
 }
